@@ -45,7 +45,27 @@ function tabata() {
           </CountdownCircleTimer>
         </div>
       )}
-      <button onClick={() => setWorkRunning(true)}>click me</button>
+      {restRunning && (
+        <div>
+          <CountdownCircleTimer
+            isPlaying
+            duration={10}
+            //   placeholder for later
+            colors={["#92C9E8", "#FFF4CC", "#F2A9A9"]}
+            colorsTime={[10, 0]}
+            onComplete={() => {
+              console.log("rest timer ended by itself");
+              setRestRunning(false);
+              setWorkRunning(true);
+            }}
+          >
+            {RenderTime}
+          </CountdownCircleTimer>
+        </div>
+      )}
+      <button onClick={workoutStarted ? stopWorkout : startWorkout}>
+        {workoutStarted ? "stop" : "start"}
+      </button>
     </div>
   );
 }
