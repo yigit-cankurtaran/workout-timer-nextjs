@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
+import minutesToSeconds from "@/hooks/minutesToSeconds";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [seconds, setSeconds] = useState(20);
-  const [restSeconds, setRestSeconds] = useState(10);
+  const [minutesInput, setMinutesInput] = useState(10);
+  const [seconds, setSeconds] = useState(minutesInput * 60);
   const [isResting, setIsResting] = useState(false);
   //   isnt this just restRunning?
-  const [rounds, setRounds] = useState(8);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  const [minutesInput, setMinutesInput] = useState("4");
   //   idk why that one is a string but it might make sense later
   //   will we even use this? rounds is the same thing
 
@@ -41,36 +40,15 @@ function tabata() {
           <input
             type="number"
             value={minutesInput}
-            onChange={(e) => setMinutesInput(e.target.value)}
+            onChange={(e) => setMinutesInput(parseInt(e.target.value))}
             // onChange might be a problem
-          />
-          <label>rounds</label>
-          <input
-            type="number"
-            value={rounds}
-            // if either this or the minutes have a problem change one
-            onChange={(e) => setRounds(parseInt(e.target.value))}
-          />
-          <label>length</label>
-          <input
-            type="number"
-            value={seconds}
-            onChange={(e) => setSeconds(parseInt(e.target.value))}
-          />
-          <label>rest length</label>
-          <input
-            type="number"
-            value={restSeconds}
-            onChange={(e) => setRestSeconds(parseInt(e.target.value))}
           />
 
           <button
             onClick={() => {
               setValuesSet(true);
               console.log("minutes: " + minutesInput);
-              console.log("rounds: " + rounds);
               console.log("seconds: " + seconds);
-              console.log("restSeconds: " + restSeconds);
             }}
           >
             set
@@ -82,12 +60,11 @@ function tabata() {
         {workoutStarted && (
           <div>
             <h1>{workRunning ? "work" : "rest"}</h1>
-            <p>rounds: {rounds}</p>
           </div>
         )}
       </div>
       {/* displays work or rest, whichever the user is doing */}
-      {workRunning && rounds > 0 && (
+      {workRunning && (
         // it doesn't stop when rounds is 0, check and fix
         // checking for it above and ending the workout might help
         <div>
@@ -100,24 +77,6 @@ function tabata() {
               console.log("timer ended by itself");
               setWorkRunning(false);
               setRestRunning(true);
-              setRounds(rounds - 1);
-            }}
-          >
-            {RenderTime}
-          </CountdownCircleTimer>
-        </div>
-      )}
-      {restRunning && (
-        <div>
-          <CountdownCircleTimer
-            isPlaying
-            duration={restSeconds}
-            colors={["#92C9E8", "#FFF4CC", "#F2A9A9"]}
-            colorsTime={[restSeconds, 0]}
-            onComplete={() => {
-              console.log("rest timer ended by itself");
-              setRestRunning(false);
-              setWorkRunning(true);
             }}
           >
             {RenderTime}
@@ -130,6 +89,7 @@ function tabata() {
             {workoutStarted ? "stop" : "start"}
           </button>
           <button onClick={() => setValuesSet(false)}>edit values</button>
+          {/* we can still edit values here while the timer runs check the logic */}
         </div>
       )}
     </div>
