@@ -9,6 +9,7 @@ export default function Home() {
       {/* empty paragraph here just to create space */}
       {/* will remove this during design and styling */}
       <Link href="/timers/amrap">amrap</Link>
+      {/* on the other site they have this same logic but "for time" */}
       <p></p>
       <Link href="/timers/emom">emom</Link>
       <p></p>
