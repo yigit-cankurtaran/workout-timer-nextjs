@@ -3,6 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 
 function tabata() {
+  const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [isResting, setIsResting] = useState(false);
   const [rounds, setRounds] = useState(8);
@@ -27,6 +28,25 @@ function tabata() {
 
   return (
     <div>
+      {!valuesSet && (
+        <div>
+          <label>minutes</label>
+          <input
+            type="number"
+            value={minutesInput}
+            onChange={(e) => setMinutesInput(e.target.value)}
+          />
+          <button
+            onClick={() => {
+              setValuesSet(true);
+              console.log(minutesInput);
+            }}
+          >
+            set
+          </button>
+        </div>
+      )}
+
       <div>{workoutStarted && <h1>{workRunning ? "work" : "rest"}</h1>}</div>
       {workRunning && (
         <div>
@@ -66,6 +86,9 @@ function tabata() {
       <button onClick={workoutStarted ? stopWorkout : startWorkout}>
         {workoutStarted ? "stop" : "start"}
       </button>
+      {valuesSet && (
+        <button onClick={() => setValuesSet(false)}>edit values</button>
+      )}
     </div>
   );
 }
