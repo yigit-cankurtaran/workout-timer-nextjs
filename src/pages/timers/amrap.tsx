@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
-import minutesToSeconds from "@/hooks/minutesToSeconds";
 
-function tabata() {
+function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState(10);
   const [seconds, setSeconds] = useState(minutesInput * 60);
-  const [isResting, setIsResting] = useState(false);
   //   isnt this just restRunning?
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
@@ -96,4 +94,4 @@ function tabata() {
   );
 }
 
-export default tabata;
+export default amrap;
