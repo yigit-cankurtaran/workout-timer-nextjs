@@ -14,6 +14,7 @@ function tabata() {
   const [restRunning, setRestRunning] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
   //   idk why that one is a string but it might make sense later
+  //   will we even use this? rounds is the same thing
 
   function startWorkout() {
     console.log("workout started");
@@ -30,6 +31,7 @@ function tabata() {
 
   return (
     <div>
+      {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div>
           <label>minutes</label>
@@ -37,6 +39,7 @@ function tabata() {
             type="number"
             value={minutesInput}
             onChange={(e) => setMinutesInput(e.target.value)}
+            // onChange might be a problem
           />
           <label>rounds</label>
           <input
@@ -72,8 +75,17 @@ function tabata() {
         </div>
       )}
 
-      <div>{workoutStarted && <h1>{workRunning ? "work" : "rest"}</h1>}</div>
-      {workRunning && (
+      <div>
+        {workoutStarted && (
+          <div>
+            <h1>{workRunning ? "work" : "rest"}</h1>
+            <p>rounds: {rounds}</p>
+          </div>
+        )}
+      </div>
+      {/* displays work or rest, whichever the user is doing */}
+      {workRunning && rounds > 0 && (
+        // it doesn't stop when rounds is 0, check and fix
         <div>
           <CountdownCircleTimer
             isPlaying
@@ -84,6 +96,7 @@ function tabata() {
               console.log("timer ended by itself");
               setWorkRunning(false);
               setRestRunning(true);
+              setRounds(rounds - 1);
             }}
           >
             {RenderTime}
@@ -107,13 +120,14 @@ function tabata() {
           </CountdownCircleTimer>
         </div>
       )}
-      <button onClick={workoutStarted ? stopWorkout : startWorkout}>
-        {workoutStarted ? "stop" : "start"}
-      </button>
       {valuesSet && (
-        <button onClick={() => setValuesSet(false)}>edit values</button>
+        <div>
+          <button onClick={workoutStarted ? stopWorkout : startWorkout}>
+            {workoutStarted ? "stop" : "start"}
+          </button>
+          <button onClick={() => setValuesSet(false)}>edit values</button>
+        </div>
       )}
-      {/* the logic here might need some work. check it. */}
     </div>
   );
 }
