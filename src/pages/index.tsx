@@ -9,6 +9,12 @@ export default function Home() {
       {/* empty paragraph here just to create space */}
       {/* will remove this during design and styling */}
       <Link href="/timers/amrap">amrap</Link>
+      <p></p>
+      <Link href="/timers/emom">emom</Link>
+      <p></p>
+      <Link href="/timers/hiit">hiit</Link>
+      {/* test your current timers then implement the rest */}
+      {/* then add a nice little design then you can p much deploy */}
     </div>
   );
 }
