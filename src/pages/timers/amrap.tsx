@@ -43,10 +43,10 @@ function amrap() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col bg-black text-white">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
-        <div>
+        <div className="flex flex-row">
           <label>minutes</label>
           <input
             type="number"
@@ -58,6 +58,7 @@ function amrap() {
                 valueSetting();
               }
             }}
+            className="bg-black text-white border-4 border-white m-5 p-5 rounded"
           />
 
           <button onClick={valueSetting}>set</button>
