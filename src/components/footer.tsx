@@ -1,20 +1,23 @@
-import React from "react";
+import Link from "next/link";
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer className="">
+    <footer className="bg-slate-500 w-full">
       {/* gonna make this actually a footer */}
       {/* need to install tailwind first */}
-      Made by{" "}
-      <a
-        href="https://github.com/yigit-cankurtaran"
-        target="_blank"
-        className="text-red-500"
-      >
-        Yiğit Cankurtaran
-      </a>
+      <p className="text-center p-4 ">
+        Made by{" "}
+        <a
+          href="https://github.com/yigit-cankurtaran"
+          target="_blank"
+          className="text-red-500"
+        >
+          Yiğit Cankurtaran
+        </a>
+        <Link href="/" className="text-red-700">
+          Home
+        </Link>
+      </p>
     </footer>
   );
 }
-
-export default Footer;

@@ -5,12 +5,13 @@ import Footer from "@/components/footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <Component {...pageProps} />
+      <div className="flex-grow flex flex-col">
+        {/* takes the space between header and footer */}
+        <Component {...pageProps} />
+      </div>
       <Footer />
-      {/* header and footer aren't where they should be */}
-      {/* gonna need some design here */}
-    </>
+    </div>
   );
 }
