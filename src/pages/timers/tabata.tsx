@@ -6,14 +6,11 @@ function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
-  const [isResting, setIsResting] = useState(false);
-  //   isnt this just restRunning?
   const [rounds, setRounds] = useState(8);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
-  //   idk why that one is a string but it might make sense later
   //   will we even use this? rounds is the same thing
 
   function startWorkout() {
