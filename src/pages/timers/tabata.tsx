@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
+import minutesToSeconds from "@/hooks/minutesToSeconds";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
   const [rounds, setRounds] = useState(8);
+  // TODO: make this so that it's tied to the rounds
+  // for tabata
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
-  //   will we even use this? rounds is the same thing
+  const intMins = parseInt(minutesInput);
 
   function startWorkout() {
     console.log("workout started");
@@ -26,7 +29,20 @@ function tabata() {
     if (restRunning) setRestRunning(false);
   }
 
-  //   implement checks for inputs
+  function valueSetting() {
+    if (isNaN(intMins) || intMins <= 0) {
+      alert("invalid input");
+      // TODO: later replace with toast
+      return;
+    }
+
+    setValuesSet(true);
+    setSeconds(minutesToSeconds(intMins));
+    console.log("minutes: " + minutesInput);
+    console.log("seconds: " + seconds);
+    // seconds prints the previous value but it works properly
+  }
+
   // implement proper rounds
 
   return (
@@ -40,6 +56,11 @@ function tabata() {
             value={minutesInput}
             onChange={(e) => setMinutesInput(e.target.value)}
             // onChange might be a problem
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter") {
+            //     valueSetting();
+            //   }
+            // }}
           />
           <label>rounds</label>
           <input

@@ -12,7 +12,7 @@ function amrap() {
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  // TODO: think about implementing a pause here.
+  // TODO: think about implementing a pause in this timer.
   // TODO: maybe a rep counter for the user to keep track of their rounds
 
   function startWorkout() {
@@ -52,7 +52,12 @@ function amrap() {
             type="number"
             value={minutesInput}
             onChange={(e) => setMinutesInput(e.target.value)}
-            // onChange might be a problem
+            // makes the input send with an enter
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                valueSetting();
+              }
+            }}
           />
 
           <button onClick={valueSetting}>set</button>
@@ -62,14 +67,11 @@ function amrap() {
       <div>
         {workoutStarted && (
           <div>
-            <h1>{workRunning ? "work" : "rest"}</h1>
+            <h1>work</h1>
           </div>
         )}
       </div>
-      {/* displays work or rest, whichever the user is doing */}
       {workRunning && (
-        // it doesn't stop when rounds is 0, check and fix
-        // checking for it above and ending the workout might help
         <div>
           <CountdownCircleTimer
             isPlaying
@@ -80,6 +82,10 @@ function amrap() {
               console.log("timer ended by itself");
               setWorkRunning(false);
               setRestRunning(true);
+              setWorkoutStarted(false);
+              // TODO: implement a way for the user to know
+              // when they finished a workout
+              // maybe a celebratory sound too
             }}
           >
             {RenderTime}
