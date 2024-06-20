@@ -5,14 +5,15 @@ import minutesToSeconds from "@/hooks/minutesToSeconds";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [minutesInput, setMinutesInput] = useState(10);
-  const [seconds, setSeconds] = useState(minutesToSeconds(minutesInput));
-  //   isnt this just restRunning?
+  const [minutesInput, setMinutesInput] = useState("10");
+  const intMins = parseInt(minutesInput);
+  // using this to make it easier to set the values
+  const [seconds, setSeconds] = useState(minutesToSeconds(intMins));
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  //   idk why that one is a string but it might make sense later
-  //   will we even use this? rounds is the same thing
+  // TODO: think about implementing a pause here.
+  // TODO: maybe a rep counter for the user to keep track of their rounds
 
   function startWorkout() {
     console.log("workout started");
@@ -27,8 +28,19 @@ function amrap() {
     if (restRunning) setRestRunning(false);
   }
 
-  //   implement checks for inputs
-  // implement proper rounds
+  function valueSetting() {
+    if (isNaN(intMins) || intMins <= 0) {
+      alert("invalid input");
+      // TODO: later replace with toast
+      return;
+    }
+
+    setValuesSet(true);
+    setSeconds(minutesToSeconds(intMins));
+    console.log("minutes: " + minutesInput);
+    console.log("seconds: " + seconds);
+    // seconds prints the previous value but it works properly
+  }
 
   return (
     <div>
@@ -39,19 +51,11 @@ function amrap() {
           <input
             type="number"
             value={minutesInput}
-            onChange={(e) => setMinutesInput(parseInt(e.target.value))}
+            onChange={(e) => setMinutesInput(e.target.value)}
             // onChange might be a problem
           />
 
-          <button
-            onClick={() => {
-              setValuesSet(true);
-              console.log("minutes: " + minutesInput);
-              console.log("seconds: " + seconds);
-            }}
-          >
-            set
-          </button>
+          <button onClick={valueSetting}>set</button>
         </div>
       )}
 

@@ -1,4 +1,4 @@
-function minutesToSeconds(minutes: number) {
+function minutesToSeconds(minutes: number): number {
   return minutes * 60;
 }
 

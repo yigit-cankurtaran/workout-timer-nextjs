@@ -8,6 +8,7 @@ function Header() {
     </header>
   );
   //   i might also straight up delete this file
+  // i want to get the crosshero timer feel first
 }
 
 export default Header;
