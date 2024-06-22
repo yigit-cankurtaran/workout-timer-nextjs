@@ -46,7 +46,7 @@ function tabata() {
   // implement proper rounds
 
   return (
-    <div>
+    <div className="flex-grow bg-slate-900 text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div>
@@ -55,12 +55,12 @@ function tabata() {
             type="number"
             value={minutesInput}
             onChange={(e) => setMinutesInput(e.target.value)}
-            // onChange might be a problem
             // onKeyDown={(e) => {
             //   if (e.key === "Enter") {
             //     valueSetting();
             //   }
             // }}
+            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
           />
           <label>rounds</label>
           <input
@@ -68,18 +68,22 @@ function tabata() {
             value={rounds}
             // if either this or the minutes have a problem change one
             onChange={(e) => setRounds(parseInt(e.target.value))}
+            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
           />
           <label>length</label>
           <input
             type="number"
             value={seconds}
             onChange={(e) => setSeconds(parseInt(e.target.value))}
+            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
           />
           <label>rest length</label>
           <input
             type="number"
             value={restSeconds}
             onChange={(e) => setRestSeconds(parseInt(e.target.value))}
+            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+            // we can make inputs and labels into their own divs
           />
 
           <button
@@ -90,6 +94,8 @@ function tabata() {
               console.log("seconds: " + seconds);
               console.log("restSeconds: " + restSeconds);
             }}
+            // button needs styling stat
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg"
           >
             set
           </button>

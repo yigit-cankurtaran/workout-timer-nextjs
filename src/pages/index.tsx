@@ -8,6 +8,7 @@ export default function Home() {
         className="text-red-400 hover:text-red-600 p-2 m-2"
       >
         tabata
+        {/* these can be bigger for mobile users and such */}
       </Link>
       <Link
         href="/timers/amrap"
