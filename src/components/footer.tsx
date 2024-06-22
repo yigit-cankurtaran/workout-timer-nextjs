@@ -10,14 +10,10 @@ export default function Footer() {
             href="https://github.com/yigit-cankurtaran"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-600"
+            className="text-red-400 hover:text-red-600"
           >
             Yiğit Cankurtaran
           </a>{" "}
-          |{" "}
-          <Link href="/" className="text-blue-400 hover:text-blue-600">
-            Home
-          </Link>
         </p>
       </div>
     </footer>
