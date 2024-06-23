@@ -51,7 +51,7 @@ function tabata() {
       {!valuesSet && (
         <div className="flex flex-col space-y-2 justify-center">
           <div className="flex items-center justify-center mb-2">
-            <label id="minutes" className="mr-2 text-gray-300 font-bold w-1/4 ">
+            <label id="minutes" className="text-gray-300 font-bold w-1/4 ">
               minutes
             </label>
             <input
@@ -68,7 +68,7 @@ function tabata() {
             />
           </div>
           <div className="flex items-center justify-center mb-2 ">
-            <label id="rounds" className="mr-2 text-gray-300 font-bold w-1/4 ">
+            <label id="rounds" className="text-gray-300 font-bold w-1/4 ">
               rounds
             </label>
             <input
@@ -82,7 +82,7 @@ function tabata() {
           </div>
 
           <div className="flex items-center justify-center mb-2">
-            <label id="length" className="mr-2 text-gray-300 font-bold w-1/4">
+            <label id="length" className="text-gray-300 font-bold w-1/4">
               length
             </label>
             <input
@@ -97,7 +97,7 @@ function tabata() {
           <div className="flex items-center justify-center mb-2">
             <label
               id="rest"
-              className="mr-2 text-gray-300 font-bold w-1/4 text-pretty"
+              className="text-gray-300 font-bold w-1/4 text-pretty"
             >
               rest length
             </label>
