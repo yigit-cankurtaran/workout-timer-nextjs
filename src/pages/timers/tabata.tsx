@@ -46,45 +46,69 @@ function tabata() {
   // implement proper rounds
 
   return (
-    <div className="flex-grow bg-slate-900 text-gray-100">
+    <div className="flex-grow p-2 bg-slate-900 text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
-        <div>
-          <label>minutes</label>
-          <input
-            type="number"
-            value={minutesInput}
-            onChange={(e) => setMinutesInput(e.target.value)}
-            // onKeyDown={(e) => {
-            //   if (e.key === "Enter") {
-            //     valueSetting();
-            //   }
-            // }}
-            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
-          />
-          <label>rounds</label>
-          <input
-            type="number"
-            value={rounds}
-            // if either this or the minutes have a problem change one
-            onChange={(e) => setRounds(parseInt(e.target.value))}
-            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
-          />
-          <label>length</label>
-          <input
-            type="number"
-            value={seconds}
-            onChange={(e) => setSeconds(parseInt(e.target.value))}
-            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
-          />
-          <label>rest length</label>
-          <input
-            type="number"
-            value={restSeconds}
-            onChange={(e) => setRestSeconds(parseInt(e.target.value))}
-            className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
-            // we can make inputs and labels into their own divs
-          />
+        <div className="flex flex-col space-y-2 justify-center">
+          <div className="flex items-center justify-center mb-2">
+            <label id="minutes" className="mr-2 text-gray-300 font-bold w-1/4 ">
+              minutes
+            </label>
+            <input
+              type="number"
+              id="minutesInput"
+              value={minutesInput}
+              onChange={(e) => setMinutesInput(e.target.value)}
+              // onKeyDown={(e) => {
+              //   if (e.key === "Enter") {
+              //     valueSetting();
+              //   }
+              // }}
+              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 m-2 rounded-lg "
+            />
+          </div>
+          <div className="flex items-center justify-center mb-2 ">
+            <label id="rounds" className="mr-2 text-gray-300 font-bold w-1/4 ">
+              rounds
+            </label>
+            <input
+              type="number"
+              value={rounds}
+              id="roundsInput"
+              // if either this or the minutes have a problem change one
+              onChange={(e) => setRounds(parseInt(e.target.value))}
+              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+            />
+          </div>
+
+          <div className="flex items-center justify-center mb-2">
+            <label id="length" className="mr-2 text-gray-300 font-bold w-1/4">
+              length
+            </label>
+            <input
+              type="number"
+              id="lengthInput"
+              value={seconds}
+              onChange={(e) => setSeconds(parseInt(e.target.value))}
+              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+            />
+          </div>
+
+          <div className="flex items-center justify-center mb-2">
+            <label
+              id="rest"
+              className="mr-2 text-gray-300 font-bold w-1/4 text-pretty"
+            >
+              rest length
+            </label>
+            <input
+              type="number"
+              id="restInput"
+              value={restSeconds}
+              onChange={(e) => setRestSeconds(parseInt(e.target.value))}
+              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+            />
+          </div>
 
           <button
             onClick={() => {
@@ -94,8 +118,7 @@ function tabata() {
               console.log("seconds: " + seconds);
               console.log("restSeconds: " + restSeconds);
             }}
-            // button needs styling stat
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg"
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set
           </button>
