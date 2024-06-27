@@ -46,12 +46,12 @@ function tabata() {
   // implement proper rounds
 
   return (
-    <div className="flex flex-col justify-center flex-grow p-2 bg-slate-900 min-h-screen text-gray-100">
+    <div className="flex flex-col justify-center flex-grow bg-slate-900 min-h-screen text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div className="flex flex-col justify-center">
-          <div className="flex items-center justify-center mb-2">
-            <label id="minutes" className="text-gray-300 font-bold w-1/4">
+          <div className="flex flex-col items-center justify-center mb-3">
+            <label id="minutes" className="text-gray-300 font-bold ">
               minutes
             </label>
             <input
@@ -67,8 +67,8 @@ function tabata() {
               className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 m-2 rounded-lg "
             />
           </div>
-          <div className="flex items-center justify-center mb-2 ">
-            <label id="rounds" className="text-gray-300 font-bold w-1/4 ">
+          <div className="flex items-center justify-center flex-col mb-3">
+            <label id="rounds" className="text-gray-300 font-bold">
               rounds
             </label>
             <input
@@ -81,8 +81,8 @@ function tabata() {
             />
           </div>
 
-          <div className="flex items-center justify-center mb-2">
-            <label id="length" className="text-gray-300 font-bold w-1/4">
+          <div className="flex flex-col items-center justify-center mb-3">
+            <label id="length" className="text-gray-300 font-bold">
               length
             </label>
             <input
@@ -94,11 +94,8 @@ function tabata() {
             />
           </div>
 
-          <div className="flex items-center justify-center mb-2">
-            <label
-              id="rest"
-              className="text-gray-300 font-bold w-1/4 text-pretty"
-            >
+          <div className="flex flex-col items-center justify-center mb-3">
+            <label id="rest" className="text-gray-300 font-bold text-pretty">
               rest length
             </label>
             <input
