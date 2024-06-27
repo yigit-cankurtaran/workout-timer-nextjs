@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {router.pathname.startsWith("/timers") && <Header />}
-      <div>
+      <div className="flex-grow flex flex-col">
         {/* takes the space between header and footer */}
         <Component {...pageProps} />
       </div>
