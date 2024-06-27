@@ -46,12 +46,12 @@ function tabata() {
   // implement proper rounds
 
   return (
-    <div className="flex-grow p-2 bg-slate-900 text-gray-100">
+    <div className="flex flex-col justify-center flex-grow p-2 bg-slate-900 min-h-screen text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
-        <div className="flex flex-col space-y-2 justify-center">
+        <div className="flex flex-col justify-center">
           <div className="flex items-center justify-center mb-2">
-            <label id="minutes" className="text-gray-300 font-bold w-1/4 ">
+            <label id="minutes" className="text-gray-300 font-bold w-1/4">
               minutes
             </label>
             <input
