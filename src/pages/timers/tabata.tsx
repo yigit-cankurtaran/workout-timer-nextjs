@@ -4,7 +4,9 @@ import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
 
 function tabata() {
-  const [valuesSet, setValuesSet] = useState(false);
+  // const [valuesSet, setValuesSet] = useState(false);
+  // gonna uncomment this after i stop testing
+  const [valuesSet, setValuesSet] = useState(true);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
   const [rounds, setRounds] = useState(8);
@@ -122,19 +124,17 @@ function tabata() {
         </div>
       )}
 
-      <div>
+      <div className="flex flex-col items-center justify-center">
         {workoutStarted && (
           <div>
             <h1>{workRunning ? "work" : "rest"}</h1>
             <p>rounds: {rounds}</p>
           </div>
         )}
-      </div>
-      {/* displays work or rest, whichever the user is doing */}
-      {workRunning && rounds > 0 && (
-        // it doesn't stop when rounds is 0, check and fix
-        // checking for it above and ending the workout might help
-        <div>
+        {/* displays work or rest, whichever the user is doing */}
+        {workRunning && rounds > 0 && (
+          // it doesn't stop when rounds is 0, check and fix
+          // checking for it above and ending the workout might help
           <CountdownCircleTimer
             isPlaying
             duration={seconds}
@@ -149,10 +149,8 @@ function tabata() {
           >
             {RenderTime}
           </CountdownCircleTimer>
-        </div>
-      )}
-      {restRunning && (
-        <div>
+        )}
+        {restRunning && (
           <CountdownCircleTimer
             isPlaying
             duration={restSeconds}
@@ -166,10 +164,10 @@ function tabata() {
           >
             {RenderTime}
           </CountdownCircleTimer>
-        </div>
-      )}
+        )}
+      </div>
       {valuesSet && (
-        <div className="flex flex-grow flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <button
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
             onClick={workoutStarted ? stopWorkout : startWorkout}
