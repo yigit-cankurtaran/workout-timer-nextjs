@@ -46,7 +46,7 @@ function amrap() {
     <div className="flex flex-col flex-grow p-2 bg-slate-900 text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col h-screen justify-center">
           <div className="flex items-center justify-center">
             <p>
               {" "}
