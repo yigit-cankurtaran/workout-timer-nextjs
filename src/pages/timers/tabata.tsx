@@ -169,11 +169,19 @@ function tabata() {
         </div>
       )}
       {valuesSet && (
-        <div>
-          <button onClick={workoutStarted ? stopWorkout : startWorkout}>
+        <div className="flex flex-grow flex-col justify-center items-center">
+          <button
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+            onClick={workoutStarted ? stopWorkout : startWorkout}
+          >
             {workoutStarted ? "stop" : "start"}
           </button>
-          <button onClick={() => setValuesSet(false)}>edit values</button>
+          <button
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+            onClick={() => setValuesSet(false)}
+          >
+            edit values
+          </button>
         </div>
       )}
     </div>
