@@ -4,9 +4,7 @@ import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
 
 function tabata() {
-  // const [valuesSet, setValuesSet] = useState(false);
-  // gonna uncomment this after i stop testing
-  const [valuesSet, setValuesSet] = useState(true);
+  const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
   const [rounds, setRounds] = useState(8);
@@ -66,7 +64,7 @@ function tabata() {
               //     valueSetting();
               //   }
               // }}
-              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 m-2 rounded-lg "
+              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 m-2 rounded-lg "
             />
           </div>
           <div className="flex items-center justify-center flex-col mb-3">
@@ -79,7 +77,7 @@ function tabata() {
               id="roundsInput"
               // if either this or the minutes have a problem change one
               onChange={(e) => setRounds(parseInt(e.target.value))}
-              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
             />
           </div>
 
@@ -92,7 +90,7 @@ function tabata() {
               id="lengthInput"
               value={seconds}
               onChange={(e) => setSeconds(parseInt(e.target.value))}
-              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
             />
           </div>
 
@@ -105,7 +103,7 @@ function tabata() {
               id="restInput"
               value={restSeconds}
               onChange={(e) => setRestSeconds(parseInt(e.target.value))}
-              className="w-32 bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
             />
           </div>
 
@@ -127,7 +125,7 @@ function tabata() {
       <div className="flex flex-col items-center justify-center">
         {workoutStarted && (
           <div>
-            <h1>{workRunning ? "work" : "rest"}</h1>
+            <h1 className="text-center">{workRunning ? "work" : "rest"}</h1>
             <p>rounds: {rounds}</p>
           </div>
         )}
@@ -136,6 +134,8 @@ function tabata() {
           // it doesn't stop when rounds is 0, check and fix
           // checking for it above and ending the workout might help
           <CountdownCircleTimer
+            // gotta style these next
+            // look into the sizes and colors with the new bg
             isPlaying
             duration={seconds}
             colors={["#004777", "#F7B801", "#A30000"]}
