@@ -43,28 +43,24 @@ function amrap() {
   }
 
   return (
-    <div className="flex flex-col flex-grow p-2 bg-slate-900 text-gray-100">
+    <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
-        <div className="flex flex-col h-screen justify-center">
-          <div className="flex items-center justify-center">
-            <p>
-              {" "}
-              for
-              <input
-                type="number"
-                value={minutesInput}
-                onChange={(e) => setMinutesInput(e.target.value)}
-                // makes the input send with an enter
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    valueSetting();
-                  }
-                }}
-                className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
-              />
-              minutes
-            </p>
+        <div className="flex flex-col">
+          <div className="flex flex-col items-center ">
+            <p className="font-bold">minutes:</p>
+            <input
+              type="number"
+              value={minutesInput}
+              onChange={(e) => setMinutesInput(e.target.value)}
+              // makes the input send with an enter
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  valueSetting();
+                }
+              }}
+              className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+            />
           </div>
 
           <button
