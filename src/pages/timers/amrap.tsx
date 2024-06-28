@@ -47,8 +47,8 @@ function amrap() {
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div className="flex flex-col">
-          <div className="flex flex-col items-center ">
-            <p className="font-bold">minutes:</p>
+          <div className="flex p-4 flex-col items-center ">
+            <p className="font-bold p-4">minutes:</p>
             <input
               type="number"
               value={minutesInput}
@@ -59,7 +59,7 @@ function amrap() {
                   valueSetting();
                 }
               }}
-              className="bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
 
@@ -72,15 +72,13 @@ function amrap() {
         </div>
       )}
 
-      <div>
+      <div className="flex flex-col items-center justify-center">
         {workoutStarted && (
           <div>
             <h1>work</h1>
           </div>
         )}
-      </div>
-      {workRunning && (
-        <div>
+        {workRunning && (
           <CountdownCircleTimer
             isPlaying
             duration={seconds}
@@ -98,14 +96,22 @@ function amrap() {
           >
             {RenderTime}
           </CountdownCircleTimer>
-        </div>
-      )}
+        )}
+      </div>
       {valuesSet && (
-        <div>
-          <button onClick={workoutStarted ? stopWorkout : startWorkout}>
+        <div className="flex flex-col justify-center items-center">
+          <button
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+            onClick={workoutStarted ? stopWorkout : startWorkout}
+          >
             {workoutStarted ? "stop" : "start"}
           </button>
-          <button onClick={() => setValuesSet(false)}>edit values</button>
+          <button
+            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+            onClick={() => setValuesSet(false)}
+          >
+            edit values
+          </button>
           {/* we can still edit values here while the timer runs check the logic */}
         </div>
       )}
