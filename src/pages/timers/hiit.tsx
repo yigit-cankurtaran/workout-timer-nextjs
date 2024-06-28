@@ -8,8 +8,8 @@ function tabata() {
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
   const [rounds, setRounds] = useState(8);
-  // TODO: make this so that it's tied to the rounds
-  // for tabata
+  // TODO: no idea what i was thinking here
+  // look into the other timer and implement it here
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
