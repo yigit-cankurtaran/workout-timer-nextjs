@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
+import valueSetting from "@/hooks/valueSetting";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -15,10 +16,13 @@ function tabata() {
   const [restRunning, setRestRunning] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
   const intMins = parseInt(minutesInput);
+  // im planning on having this a minute setting with 20 seconds of work and 10 seconds of rest
+  const [workoutCompleted, setWorkoutCompleted] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
+    setWorkoutCompleted(false);
     setWorkRunning(true);
   }
 
@@ -28,22 +32,6 @@ function tabata() {
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
   }
-
-  function valueSetting() {
-    if (isNaN(intMins) || intMins <= 0) {
-      alert("invalid input");
-      // TODO: later replace with toast
-      return;
-    }
-
-    setValuesSet(true);
-    setSeconds(minutesToSeconds(intMins));
-    console.log("minutes: " + minutesInput);
-    console.log("seconds: " + seconds);
-    // seconds prints the previous value but it works properly
-  }
-
-  // implement proper rounds
 
   return (
     <div className="flex flex-col justify-center flex-grow bg-slate-900 min-h-screen text-gray-100">
