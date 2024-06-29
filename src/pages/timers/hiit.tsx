@@ -11,16 +11,19 @@ function tabata() {
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
+  const [workoutCompleted, setWorkoutCompleted] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
     setWorkRunning(true);
+    setWorkoutCompleted(false);
   }
 
   function stopWorkout() {
     console.log("workout stopped");
     setWorkoutStarted(false);
+    setWorkoutCompleted(true);
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
   }
@@ -84,10 +87,15 @@ function tabata() {
               colors={["#004777", "#F7B801", "#A30000"]}
               colorsTime={[seconds, 0]}
               onComplete={() => {
-                console.log("timer ended by itself");
-                setWorkRunning(false);
-                setRestRunning(true);
-                setRounds(rounds - 1);
+                if (rounds - 1 === 0) {
+                  console.log("workout completed");
+                  setWorkoutCompleted(true);
+                  stopWorkout();
+                } else {
+                  setWorkRunning(false);
+                  setRestRunning(true);
+                  setRounds(rounds - 1);
+                }
               }}
             >
               {RenderTime}
@@ -111,6 +119,13 @@ function tabata() {
             </CountdownCircleTimer>
           </div>
         )}
+        {workoutCompleted && (
+          <div className="text-center mt-4">
+            <h2 className="text-lg font-semibold">
+              Congrats! Workout complete!
+            </h2>
+          </div>
+        )}
       </div>
       {valuesSet && (
         <div className="flex flex-col justify-center items-center">
@@ -128,6 +143,7 @@ function tabata() {
           </button>
         </div>
       )}
+      {/* nothing happens when rounds is 0, the workout still goes on. fix it. */}
     </div>
   );
 }
