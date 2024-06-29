@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
-import FinishedTimer from "@/components/finishedtimer";
-// this logic is messed up.
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -26,15 +24,20 @@ function tabata() {
     if (restRunning) setRestRunning(false);
   }
 
-  function valueSetting(value: number) {
-    if (isNaN(value) || value <= 0) {
-      alert("invalid input");
-      // TODO: later replace with toast
-      return;
+  function valueSetting(...args: number[]) {
+    for (const arg of args) {
+      if (isNaN(arg) || arg <= 0) {
+        alert("all values must be greater than 0");
+        // TODO: later replace with toast
+        return false;
+      }
     }
 
     setValuesSet(true);
     console.log("seconds: " + seconds);
+    console.log("restSeconds: " + restSeconds);
+    console.log("rounds: " + rounds);
+    return true;
   }
 
   return (
@@ -48,12 +51,6 @@ function tabata() {
               type="number"
               value={seconds}
               onChange={(e) => setSeconds(parseInt(e.target.value))}
-              // makes the input send with an enter
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  valueSetting(seconds);
-                }
-              }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
             <p className="font-bold p-2">rest</p>
@@ -67,7 +64,6 @@ function tabata() {
             <input
               type="number"
               value={rounds}
-              // if either this or the minutes have a problem change one
               onChange={(e) => setRounds(parseInt(e.target.value))}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
@@ -76,10 +72,10 @@ function tabata() {
           <button
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
             onClick={() => {
-              setValuesSet(true);
-              console.log("rounds: " + rounds);
-              console.log("seconds: " + seconds);
-              console.log("restSeconds: " + restSeconds);
+              if (valueSetting(seconds, restSeconds, rounds)) {
+                setValuesSet(true);
+                console.log("values set");
+              }
             }}
           >
             set
@@ -88,7 +84,7 @@ function tabata() {
       )}
 
       <div className="flex flex-col items-center justify-center">
-        {workoutStarted && (
+        {workoutStarted && rounds > 0 && (
           <div className="text-center">
             <h1>{workRunning ? "work" : "rest"}</h1>
             <p>rounds: {rounds}</p>
@@ -127,11 +123,6 @@ function tabata() {
             >
               {RenderTime}
             </CountdownCircleTimer>
-          </div>
-        )}
-        {rounds === 0 && (
-          <div>
-            <FinishedTimer />
           </div>
         )}
       </div>
