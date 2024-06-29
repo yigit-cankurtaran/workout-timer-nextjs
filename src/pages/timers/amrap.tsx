@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
+import valueSetting from "@/hooks/valueSetting";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -28,20 +29,6 @@ function amrap() {
     if (restRunning) setRestRunning(false);
   }
 
-  function valueSetting() {
-    if (isNaN(intMins) || intMins <= 0) {
-      alert("invalid input");
-      // TODO: later replace with toast
-      return;
-    }
-
-    setValuesSet(true);
-    setSeconds(minutesToSeconds(intMins));
-    console.log("minutes: " + minutesInput);
-    console.log("seconds: " + seconds);
-    // seconds prints the previous value but it works properly
-  }
-
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
       {/* if values aren't set bring up the setting part */}
@@ -56,7 +43,9 @@ function amrap() {
               // makes the input send with an enter
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  valueSetting();
+                  valueSetting(intMins);
+                  setValuesSet(true);
+                  setSeconds(minutesToSeconds(intMins));
                 }
               }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
@@ -64,7 +53,11 @@ function amrap() {
           </div>
 
           <button
-            onClick={valueSetting}
+            onClick={() => {
+              valueSetting(intMins);
+              setValuesSet(true);
+              setSeconds(minutesToSeconds(intMins));
+            }}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set

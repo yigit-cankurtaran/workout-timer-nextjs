@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
+import valueSetting from "@/hooks/valueSetting";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -22,22 +23,6 @@ function tabata() {
     setWorkoutStarted(false);
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
-  }
-
-  function valueSetting(...args: number[]) {
-    for (const arg of args) {
-      if (isNaN(arg) || arg <= 0) {
-        alert("all values must be greater than 0");
-        // TODO: later replace with toast
-        return false;
-      }
-    }
-
-    setValuesSet(true);
-    console.log("seconds: " + seconds);
-    console.log("restSeconds: " + restSeconds);
-    console.log("rounds: " + rounds);
-    return true;
   }
 
   return (
