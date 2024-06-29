@@ -15,11 +15,13 @@ function amrap() {
   const [restRunning, setRestRunning] = useState(false);
   // TODO: think about implementing a pause in this timer.
   // TODO: maybe a rep counter for the user to keep track of their rounds
+  const [workoutCompleted, setWorkoutCompleted] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
     setWorkRunning(true);
+    setWorkoutCompleted(false);
   }
 
   function stopWorkout() {
@@ -43,9 +45,10 @@ function amrap() {
               // makes the input send with an enter
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  valueSetting(intMins);
-                  setValuesSet(true);
-                  setSeconds(minutesToSeconds(intMins));
+                  if (valueSetting(intMins)) {
+                    setValuesSet(true);
+                    setSeconds(minutesToSeconds(intMins));
+                  }
                 }
               }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
@@ -54,9 +57,10 @@ function amrap() {
 
           <button
             onClick={() => {
-              valueSetting(intMins);
-              setValuesSet(true);
-              setSeconds(minutesToSeconds(intMins));
+              if (valueSetting(intMins)) {
+                setValuesSet(true);
+                setSeconds(minutesToSeconds(intMins));
+              }
             }}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
@@ -82,13 +86,18 @@ function amrap() {
               setWorkRunning(false);
               setRestRunning(true);
               setWorkoutStarted(false);
-              // TODO: implement a way for the user to know
-              // when they finished a workout
-              // maybe a celebratory sound too
+              setWorkoutCompleted(true);
             }}
           >
             {RenderTime}
           </CountdownCircleTimer>
+        )}
+        {workoutCompleted && (
+          <div className="text-center mt-4">
+            <h2 className="text-lg font-semibold">
+              Congrats! Workout complete!
+            </h2>
+          </div>
         )}
       </div>
       {valuesSet && (

@@ -23,7 +23,6 @@ function tabata() {
   function stopWorkout() {
     console.log("workout stopped");
     setWorkoutStarted(false);
-    setWorkoutCompleted(true);
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
   }
