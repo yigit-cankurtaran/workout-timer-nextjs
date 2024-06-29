@@ -35,21 +35,22 @@ function tabata() {
             <input
               type="number"
               value={seconds}
-              onChange={(e) => setSeconds(parseInt(e.target.value))}
+              onChange={(e) => setSeconds(Number(e.target.value))}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
             <p className="font-bold p-2">rest</p>
             <input
               type="number"
               value={restSeconds}
-              onChange={(e) => setRestSeconds(parseInt(e.target.value))}
+              onChange={(e) => setRestSeconds(Number(e.target.value))}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
             <p className="font-bold p-2">rounds</p>
             <input
               type="number"
               value={rounds}
-              onChange={(e) => setRounds(parseInt(e.target.value))}
+              onChange={(e) => setRounds(Number(e.target.value))}
+              // TODO: leading 0 doesn't look good, fix this later on
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
