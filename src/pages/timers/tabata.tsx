@@ -34,14 +34,13 @@ function tabata() {
   }
 
   return (
-    <div className="flex flex-col justify-center flex-grow bg-slate-900 min-h-screen text-gray-100">
-      {/* if values aren't set bring up the setting part */}
+    <div className="flex flex-col justify-center bg-slate-900 min-h-screen text-gray-100">
       {!valuesSet && (
-        <div className="flex flex-col justify-center">
-          <div className="flex flex-col items-center justify-center mb-3">
-            <label id="minutes" className="text-gray-300 font-bold ">
+        <div className="flex flex-col">
+          <div className="flex p-4 flex-col items-center ">
+            <p id="minutes" className="p-2 font-bold">
               minutes
-            </label>
+            </p>
             <input
               type="number"
               id="minutesInput"
@@ -52,46 +51,46 @@ function tabata() {
               //     valueSetting();
               //   }
               // }}
-              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 m-2 rounded-lg "
+              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
           <div className="flex items-center justify-center flex-col mb-3">
-            <label id="rounds" className="text-gray-300 font-bold">
+            <p id="rounds" className="font-bold p-2">
               rounds
-            </label>
+            </p>
             <input
               type="number"
               value={rounds}
               id="roundsInput"
               // if either this or the minutes have a problem change one
               onChange={(e) => setRounds(parseInt(e.target.value))}
-              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
 
           <div className="flex flex-col items-center justify-center mb-3">
-            <label id="length" className="text-gray-300 font-bold">
+            <p id="length" className="font-bold p-2">
               length
-            </label>
+            </p>
             <input
               type="number"
               id="lengthInput"
               value={seconds}
               onChange={(e) => setSeconds(parseInt(e.target.value))}
-              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
 
           <div className="flex flex-col items-center justify-center mb-3">
-            <label id="rest" className="text-gray-300 font-bold text-pretty">
+            <p id="rest" className="font-bold p-2">
               rest length
-            </label>
+            </p>
             <input
               type="number"
               id="restInput"
               value={restSeconds}
               onChange={(e) => setRestSeconds(parseInt(e.target.value))}
-              className="w-32 text-center bg-slate-900 text-gray-100 border-4 border-gray-100 m-2 p-2 rounded-lg"
+              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
 

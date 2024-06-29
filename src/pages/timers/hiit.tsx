@@ -29,10 +29,9 @@ function tabata() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
-      {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center ">
+          <div className="flex p-4 flex-col items-center">
             <p className="font-bold p-2">work</p>
             <input
               type="number"
@@ -142,7 +141,6 @@ function tabata() {
           </button>
         </div>
       )}
-      {/* nothing happens when rounds is 0, the workout still goes on. fix it. */}
     </div>
   );
 }
