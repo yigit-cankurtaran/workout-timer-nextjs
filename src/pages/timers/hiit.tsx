@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 import valueSetting from "@/hooks/valueSetting";
+import WorkoutDisplay from "@/components/workoutdisplay";
 
 function hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -71,12 +72,11 @@ function hiit() {
       )}
 
       <div className="flex flex-col items-center justify-center">
-        {workoutStarted && rounds > 0 && (
-          <div className="text-center">
-            <h1>{workRunning ? "work" : "rest"}</h1>
-            <p>rounds: {rounds}</p>
-          </div>
-        )}
+        <WorkoutDisplay
+          workoutStarted={workoutStarted}
+          workRunning={workRunning}
+          rounds={rounds}
+        />
         {workRunning && rounds > 0 && (
           <div>
             <CountdownCircleTimer
