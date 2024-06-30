@@ -4,6 +4,7 @@ import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
 import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
+import WorkTimer from "@/components/worktimer";
 import WorkoutComplete from "@/components/workoutcomplete";
 
 function amrap() {
@@ -74,24 +75,19 @@ function amrap() {
       <div className="flex flex-col items-center justify-center">
         <WorkoutDisplay workoutStarted={workoutStarted} />
         {workRunning && (
-          <CountdownCircleTimer
-            isPlaying
-            duration={seconds}
-            colors={["#004777", "#F7B801", "#A30000"]}
-            colorsTime={[seconds, 0]}
-            onComplete={() => {
-              console.log("timer ended by itself");
-              setWorkRunning(false);
-              setRestRunning(true);
-              setWorkoutStarted(false);
-              setWorkoutCompleted(true);
-            }}
-          >
-            {RenderTime}
-          </CountdownCircleTimer>
+          <WorkTimer
+            seconds={seconds}
+            rounds={1}
+            // practically functions as a 1 round timer
+            setWorkoutCompleted={setWorkoutCompleted}
+            stopWorkout={stopWorkout}
+            setWorkRunning={setWorkRunning}
+            setRestRunning={setRestRunning}
+            setRounds={() => {}}
+          />
         )}
-        <WorkoutComplete workoutCompleted={workoutCompleted} />
       </div>
+      <WorkoutComplete workoutCompleted={workoutCompleted} />
       {valuesSet && (
         <div className="flex flex-col justify-center items-center">
           <button
@@ -106,7 +102,6 @@ function amrap() {
           >
             edit values
           </button>
-          {/* we can still edit values here while the timer runs check the logic */}
         </div>
       )}
     </div>

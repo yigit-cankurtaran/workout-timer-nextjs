@@ -4,6 +4,8 @@ import RenderTime from "../../components/RenderTime";
 import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
+import WorkTimer from "@/components/worktimer";
+import RestTimer from "@/components/resttimer";
 
 function hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -79,44 +81,22 @@ function hiit() {
           rounds={rounds}
         />
         {workRunning && rounds > 0 && (
-          <div>
-            <CountdownCircleTimer
-              isPlaying
-              duration={seconds}
-              colors={["#004777", "#F7B801", "#A30000"]}
-              colorsTime={[seconds, 0]}
-              onComplete={() => {
-                if (rounds - 1 === 0) {
-                  console.log("workout completed");
-                  setWorkoutCompleted(true);
-                  stopWorkout();
-                } else {
-                  setWorkRunning(false);
-                  setRestRunning(true);
-                  setRounds(rounds - 1);
-                }
-              }}
-            >
-              {RenderTime}
-            </CountdownCircleTimer>
-          </div>
+          <WorkTimer
+            seconds={seconds}
+            rounds={rounds}
+            setWorkoutCompleted={setWorkoutCompleted}
+            stopWorkout={stopWorkout}
+            setWorkRunning={setWorkRunning}
+            setRestRunning={setRestRunning}
+            setRounds={setRounds}
+          />
         )}
         {restRunning && rounds > 0 && (
-          <div>
-            <CountdownCircleTimer
-              isPlaying
-              duration={restSeconds}
-              colors={["#92C9E8", "#FFF4CC", "#F2A9A9"]}
-              colorsTime={[restSeconds, 0]}
-              onComplete={() => {
-                console.log("rest timer ended by itself");
-                setRestRunning(false);
-                setWorkRunning(true);
-              }}
-            >
-              {RenderTime}
-            </CountdownCircleTimer>
-          </div>
+          <RestTimer
+            restSeconds={restSeconds}
+            setRestRunning={setRestRunning}
+            setWorkRunning={setWorkRunning}
+          />
         )}
         <WorkoutComplete workoutCompleted={workoutCompleted} />
       </div>
