@@ -3,7 +3,8 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 import minutesToSeconds from "@/hooks/minutesToSeconds";
 import valueSetting from "@/hooks/valueSetting";
-import WorkoutDisplay from "@/components/settingdisplay";
+import WorkoutDisplay from "@/components/workoutdisplay";
+import WorkoutComplete from "@/components/workoutcomplete";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -89,13 +90,7 @@ function amrap() {
             {RenderTime}
           </CountdownCircleTimer>
         )}
-        {workoutCompleted && (
-          <div className="text-center mt-4">
-            <h2 className="text-lg font-semibold">
-              Congrats! Workout complete!
-            </h2>
-          </div>
-        )}
+        <WorkoutComplete workoutCompleted={workoutCompleted} />
       </div>
       {valuesSet && (
         <div className="flex flex-col justify-center items-center">
