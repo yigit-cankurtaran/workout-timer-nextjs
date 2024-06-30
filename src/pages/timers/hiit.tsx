@@ -3,7 +3,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "../../components/RenderTime";
 import valueSetting from "@/hooks/valueSetting";
 
-function tabata() {
+function hiit() {
   const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
@@ -145,4 +145,4 @@ function tabata() {
   );
 }
 
-export default tabata;
+export default hiit;

@@ -11,6 +11,7 @@ function tabata() {
   const [rounds, setRounds] = useState(8);
   // TODO: make this so that it's tied to the rounds
   // for tabata
+  // might just delete this entire file and name the other one tabata
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
