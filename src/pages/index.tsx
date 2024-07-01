@@ -28,6 +28,12 @@ export default function Home() {
       >
         hiit
       </Link>
+      <Link
+        href="/timers/fortime"
+        className="text-red-400 hover:text-red-600 p-4 text-2xl font-bold m-4"
+      >
+        for time
+      </Link>
     </div>
   );
 }
