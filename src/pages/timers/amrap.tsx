@@ -15,7 +15,6 @@ function amrap() {
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  // TODO: think about implementing a pause in this timer.
   // TODO: maybe a rep counter for the user to keep track of their rounds
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
 

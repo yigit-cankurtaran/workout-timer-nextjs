@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import valueSetting from "@/hooks/valueSetting";
@@ -6,16 +6,13 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
 
-// thinking about implementing this as counting down from a set time
-// input fields: minutes, work seconds, rest seconds
-// work seconds + rest seconds = 60
-// maybe pick a every ... minutes option to multiply this
-// work timer and rest timer for work seconds and rest seconds
+// TODO: consider editing values stopping workout
 
 function emom() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
+  const [rounds, setRounds] = useState(10);
   const [workSeconds, setWorkSeconds] = useState(45);
   const [restSeconds, setRestSeconds] = useState(15);
   const [workoutStarted, setWorkoutStarted] = useState(false);
@@ -23,11 +20,22 @@ function emom() {
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
 
+  useEffect(() => {
+    const intMins = parseInt(minutesInput);
+    if (intMins > 0) {
+      setRounds(intMins);
+    }
+  }, [minutesInput]);
+
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
     setWorkRunning(true);
     setWorkoutCompleted(false);
+
+    // this is to reset the rounds to the original value
+    setMinutesInput("10");
+    setRounds(10);
   }
 
   function stopWorkout() {
@@ -50,14 +58,14 @@ function emom() {
               onChange={(e) => setMinutesInput(e.target.value)}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
-            <p className="font-bold p-2">work</p>
+            <p className="font-bold p-2">work seconds</p>
             <input
               type="number"
               value={workSeconds}
               onChange={(e) => setWorkSeconds(Number(e.target.value))}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
-            <p className="font-bold p-2">rest</p>
+            <p className="font-bold p-2">rest seconds</p>
             <input
               type="number"
               value={restSeconds}
@@ -82,13 +90,12 @@ function emom() {
 
       {/* workout display */}
       <div className="flex flex-col items-center justify-center">
-        <WorkoutDisplay workoutStarted={workoutStarted} />
-        {/* we have a rounds prop for above */}
+        <WorkoutDisplay workoutStarted={workoutStarted} rounds={rounds} />
         {/* work timer */}
         {workRunning && (
           <WorkTimer
             seconds={workSeconds}
-            rounds={1}
+            rounds={intMins}
             setWorkoutCompleted={setWorkoutCompleted}
             setWorkRunning={setWorkRunning}
             setRestRunning={setRestRunning}
