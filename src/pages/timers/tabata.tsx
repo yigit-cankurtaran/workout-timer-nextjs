@@ -1,24 +1,30 @@
-import React, { useState } from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import RenderTime from "../../components/RenderTime";
-import minutesToSeconds from "@/hooks/minutesToSeconds";
+import React, { useState, useEffect } from "react";
+// need to use useEffect for the rounds value
 import valueSetting from "@/hooks/valueSetting";
+import WorkTimer from "@/components/worktimer";
+import RestTimer from "@/components/resttimer";
+import ControlButtons from "@/components/controlbuttons";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [seconds, setSeconds] = useState(20);
-  const [restSeconds, setRestSeconds] = useState(10);
-  const [rounds, setRounds] = useState(8);
-  // TODO: make this so that it's tied to the rounds
-  // for tabata
-  // might just delete this entire file and name the other one tabata
+  const [minutesInput, setMinutesInput] = useState("4");
+  const intMins = parseInt(minutesInput);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  const [minutesInput, setMinutesInput] = useState("4");
-  const intMins = parseInt(minutesInput);
-  // im planning on having this a minute setting with 20 seconds of work and 10 seconds of rest
+  const [rounds, setRounds] = useState(8);
+  const [seconds, setSeconds] = useState(20);
+  const [restSeconds, setRestSeconds] = useState(10);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+
+  useEffect(() => {
+    const intMins = parseInt(minutesInput);
+    if (intMins > 0) {
+      setRounds(intMins * 2);
+    }
+  }, [minutesInput]);
+  // 2 rounds per minute
+  // 20 seconds work, 10 seconds rest
 
   function startWorkout() {
     console.log("workout started");
@@ -47,61 +53,25 @@ function tabata() {
               id="minutesInput"
               value={minutesInput}
               onChange={(e) => setMinutesInput(e.target.value)}
-              // onKeyDown={(e) => {
-              //   if (e.key === "Enter") {
-              //     valueSetting();
-              //   }
-              // }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  if (valueSetting(intMins)) {
+                    setValuesSet(true);
+                  }
+                }
+              }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
-          <div className="flex items-center justify-center flex-col mb-3">
-            <p id="rounds" className="font-bold p-2">
-              rounds
-            </p>
-            <input
-              type="number"
-              value={rounds}
-              id="roundsInput"
-              // if either this or the minutes have a problem change one
-              onChange={(e) => setRounds(parseInt(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
-            />
-          </div>
-
-          <div className="flex flex-col items-center justify-center mb-3">
-            <p id="length" className="font-bold p-2">
-              length
-            </p>
-            <input
-              type="number"
-              id="lengthInput"
-              value={seconds}
-              onChange={(e) => setSeconds(parseInt(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
-            />
-          </div>
-
-          <div className="flex flex-col items-center justify-center mb-3">
-            <p id="rest" className="font-bold p-2">
-              rest length
-            </p>
-            <input
-              type="number"
-              id="restInput"
-              value={restSeconds}
-              onChange={(e) => setRestSeconds(parseInt(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
-            />
-          </div>
-
           <button
             onClick={() => {
-              setValuesSet(true);
-              console.log("minutes: " + minutesInput);
-              console.log("rounds: " + rounds);
-              console.log("seconds: " + seconds);
-              console.log("restSeconds: " + restSeconds);
+              if (valueSetting(intMins)) {
+                setValuesSet(true);
+                console.log("minutes: " + minutesInput);
+                console.log("rounds: " + rounds);
+                console.log("seconds: " + seconds);
+                console.log("restSeconds: " + restSeconds);
+              }
             }}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
@@ -117,59 +87,33 @@ function tabata() {
             <p>rounds: {rounds}</p>
           </div>
         )}
-        {/* displays work or rest, whichever the user is doing */}
         {workRunning && rounds > 0 && (
-          // it doesn't stop when rounds is 0, check and fix
-          // checking for it above and ending the workout might help
-          <CountdownCircleTimer
-            // gotta style these next
-            // look into the sizes and colors with the new bg
-            isPlaying
-            duration={seconds}
-            colors={["#004777", "#F7B801", "#A30000"]}
-            colorsTime={[seconds, 0]}
-            onComplete={() => {
-              console.log("timer ended by itself");
-              setWorkRunning(false);
-              setRestRunning(true);
-              setRounds(rounds - 1);
-            }}
-          >
-            {RenderTime}
-          </CountdownCircleTimer>
+          <WorkTimer
+            seconds={seconds}
+            rounds={rounds}
+            setWorkoutCompleted={setWorkoutCompleted}
+            stopWorkout={stopWorkout}
+            setWorkRunning={setWorkRunning}
+            setRestRunning={setRestRunning}
+            setRounds={setRounds}
+          />
         )}
         {restRunning && (
-          <CountdownCircleTimer
-            isPlaying
-            duration={restSeconds}
-            colors={["#92C9E8", "#FFF4CC", "#F2A9A9"]}
-            colorsTime={[restSeconds, 0]}
-            onComplete={() => {
-              console.log("rest timer ended by itself");
-              setRestRunning(false);
-              setWorkRunning(true);
-            }}
-          >
-            {RenderTime}
-          </CountdownCircleTimer>
+          <RestTimer
+            restSeconds={restSeconds}
+            setRestRunning={setRestRunning}
+            setWorkRunning={setWorkRunning}
+          />
         )}
       </div>
 
       {valuesSet && (
-        <div className="flex flex-col justify-center items-center">
-          <button
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-            onClick={workoutStarted ? stopWorkout : startWorkout}
-          >
-            {workoutStarted ? "stop" : "start"}
-          </button>
-          <button
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-            onClick={() => setValuesSet(false)}
-          >
-            edit values
-          </button>
-        </div>
+        <ControlButtons
+          workoutStarted={workoutStarted}
+          setValuesSet={setValuesSet}
+          stopWorkout={stopWorkout}
+          startWorkout={startWorkout}
+        />
       )}
     </div>
   );

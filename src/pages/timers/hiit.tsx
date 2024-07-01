@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import RenderTime from "../../components/RenderTime";
 import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
