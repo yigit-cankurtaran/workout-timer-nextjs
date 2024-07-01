@@ -21,6 +21,7 @@ function tabata() {
     const intMins = parseInt(minutesInput);
     if (intMins > 0) {
       setRounds(intMins * 2);
+      // this keeps the value we left off at
     }
   }, [minutesInput]);
   // 2 rounds per minute
@@ -38,6 +39,13 @@ function tabata() {
     setWorkoutStarted(false);
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
+
+    // this is to reset the rounds to the original value
+    setMinutesInput("4");
+    setRounds(8);
+    // just in case
+    setSeconds(20);
+    setRestSeconds(10);
   }
 
   return (
