@@ -3,6 +3,8 @@ import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
+import WorkoutComplete from "@/components/workoutcomplete";
+import ControlButtons from "@/components/controlbuttons";
 
 // thinking about implementing this as counting down from a set time
 // input fields: minutes, work seconds, rest seconds
@@ -81,18 +83,37 @@ function emom() {
       {/* workout display */}
       <div className="flex flex-col items-center justify-center">
         <WorkoutDisplay workoutStarted={workoutStarted} />
+        {/* we have a rounds prop for above */}
         {/* work timer */}
-        {/* {workRunning && (
+        {workRunning && (
           <WorkTimer
             seconds={workSeconds}
             rounds={1}
-            workoutCompleted={workoutCompleted}
             setWorkoutCompleted={setWorkoutCompleted}
-            restRunning={restRunning}
+            setWorkRunning={setWorkRunning}
+            setRestRunning={setRestRunning}
+            setRounds={() => {}} // not used
+            stopWorkout={stopWorkout}
+          />
+        )}
+        {/* rest timer */}
+        {restRunning && (
+          <RestTimer
+            restSeconds={restSeconds}
+            setWorkRunning={setWorkRunning}
             setRestRunning={setRestRunning}
           />
-        )} */}
+        )}
+        <WorkoutComplete workoutCompleted={workoutCompleted} />
       </div>
+      {valuesSet && (
+        <ControlButtons
+          workoutStarted={workoutStarted}
+          setValuesSet={setValuesSet}
+          stopWorkout={stopWorkout}
+          startWorkout={startWorkout}
+        />
+      )}
     </div>
   );
 }
