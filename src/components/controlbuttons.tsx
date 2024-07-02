@@ -25,7 +25,10 @@ function ControlButtons({
       </button>
       <button
         className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-        onClick={() => setValuesSet(false)}
+        onClick={() => {
+          stopWorkout();
+          setValuesSet(false);
+        }}
       >
         edit values
       </button>
