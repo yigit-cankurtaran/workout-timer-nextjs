@@ -16,6 +16,7 @@ function fortime() {
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [valueError, setValueError] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
@@ -44,7 +45,7 @@ function fortime() {
               // makes the input send with an enter
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (valueSetting(intMins)) {
+                  if (valueSetting(setValueError, intMins)) {
                     setValuesSet(true);
                     setSeconds(minutesToSeconds(intMins));
                   }
@@ -56,7 +57,7 @@ function fortime() {
 
           <button
             onClick={() => {
-              if (valueSetting(intMins)) {
+              if (valueSetting(setValueError, intMins)) {
                 setValuesSet(true);
                 setSeconds(minutesToSeconds(intMins));
               }

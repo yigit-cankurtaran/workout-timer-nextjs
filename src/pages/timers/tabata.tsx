@@ -16,6 +16,7 @@ function tabata() {
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [valueError, setValueError] = useState(false);
 
   useEffect(() => {
     const intMins = parseInt(minutesInput);
@@ -63,7 +64,7 @@ function tabata() {
               onChange={(e) => setMinutesInput(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (valueSetting(intMins)) {
+                  if (valueSetting(setValueError, intMins)) {
                     setValuesSet(true);
                   }
                 }
@@ -73,7 +74,7 @@ function tabata() {
           </div>
           <button
             onClick={() => {
-              if (valueSetting(intMins)) {
+              if (valueSetting(setValueError, intMins)) {
                 setValuesSet(true);
                 console.log("minutes: " + minutesInput);
                 console.log("rounds: " + rounds);

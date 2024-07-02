@@ -5,6 +5,7 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkTimer from "@/components/worktimer";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
+import toast, { Toaster } from "react-hot-toast";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -19,6 +20,7 @@ function amrap() {
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [reps, setReps] = useState(0);
   // implement a button and a display for the reps
+  const [valueError, setValueError] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
@@ -34,8 +36,17 @@ function amrap() {
     if (restRunning) setRestRunning(false);
   }
 
+  function handleValueSetting() {
+    if (valueSetting(setValueError, intMins)) {
+      setValuesSet(true);
+      setSeconds(minutesToSeconds(intMins));
+      toast.success("Values set!");
+    } else toast.error("Please enter a valid number");
+  }
+
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Toaster />
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div className="flex flex-col">
@@ -48,10 +59,7 @@ function amrap() {
               // makes the input send with an enter
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (valueSetting(intMins)) {
-                    setValuesSet(true);
-                    setSeconds(minutesToSeconds(intMins));
-                  }
+                  handleValueSetting();
                 }
               }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
@@ -59,12 +67,7 @@ function amrap() {
           </div>
 
           <button
-            onClick={() => {
-              if (valueSetting(intMins)) {
-                setValuesSet(true);
-                setSeconds(minutesToSeconds(intMins));
-              }
-            }}
+            onClick={() => handleValueSetting()}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set

@@ -15,6 +15,7 @@ function hiit() {
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [valueError, setValueError] = useState(false);
 
   function startWorkout() {
     console.log("workout started");
@@ -62,7 +63,7 @@ function hiit() {
           <button
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
             onClick={() => {
-              if (valueSetting(seconds, restSeconds, rounds)) {
+              if (valueSetting(setValueError, seconds, restSeconds, rounds)) {
                 setValuesSet(true);
                 console.log("values set");
               }

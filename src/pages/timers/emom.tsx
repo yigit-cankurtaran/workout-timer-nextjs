@@ -17,6 +17,7 @@ function emom() {
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [valueError, setValueError] = useState(false);
 
   useEffect(() => {
     const intMins = parseInt(minutesInput);
@@ -75,7 +76,9 @@ function emom() {
           {/* setting button */}
           <button
             onClick={() => {
-              if (valueSetting(workSeconds, restSeconds, intMins)) {
+              if (
+                valueSetting(setValueError, workSeconds, restSeconds, intMins)
+              ) {
                 setValuesSet(true);
               }
             }}
