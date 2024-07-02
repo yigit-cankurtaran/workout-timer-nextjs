@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 fixed bottom-0 text-gray-100 h-13 w-full">
-      <div className="max-w-screen-xl mx-auto py-4 px-8">
+    <footer className="bg-gray-900 fixed bottom-0 text-gray-100 h-13 w-full">
+      <div className="max-w-screen-xl mx-auto py-4">
         <p className="text-pretty text-center text-sm">
           Made by{" "}
           <a

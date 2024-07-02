@@ -17,6 +17,8 @@ function amrap() {
   const [restRunning, setRestRunning] = useState(false);
   // TODO: maybe a rep counter for the user to keep track of their rounds
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [reps, setReps] = useState(0);
+  // implement a button and a display for the reps
 
   function startWorkout() {
     console.log("workout started");

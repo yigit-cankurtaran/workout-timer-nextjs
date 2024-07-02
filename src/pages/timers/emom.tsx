@@ -6,8 +6,6 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
 
-// TODO: consider editing values stopping workout
-
 function emom() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
