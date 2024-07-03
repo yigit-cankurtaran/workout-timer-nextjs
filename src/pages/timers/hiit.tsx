@@ -5,6 +5,7 @@ import WorkoutComplete from "@/components/workoutcomplete";
 import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import ControlButtons from "@/components/controlbuttons";
+import toast, { Toaster } from "react-hot-toast";
 
 function hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -31,8 +32,16 @@ function hiit() {
     if (restRunning) setRestRunning(false);
   }
 
+  function handleValueSetting() {
+    if (valueSetting(setValueError, seconds, restSeconds, rounds)) {
+      setValuesSet(true);
+      toast.success("Values set!");
+    } else toast.error("Please enter a valid number");
+  }
+
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center">
@@ -62,12 +71,7 @@ function hiit() {
 
           <button
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-            onClick={() => {
-              if (valueSetting(setValueError, seconds, restSeconds, rounds)) {
-                setValuesSet(true);
-                console.log("values set");
-              }
-            }}
+            onClick={() => handleValueSetting()}
           >
             set
           </button>

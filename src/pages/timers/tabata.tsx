@@ -4,6 +4,7 @@ import valueSetting from "@/hooks/valueSetting";
 import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import ControlButtons from "@/components/controlbuttons";
+import toast, { Toaster } from "react-hot-toast";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -49,8 +50,16 @@ function tabata() {
     setRestSeconds(10);
   }
 
+  function handleValueSetting() {
+    if (valueSetting(setValueError, intMins)) {
+      setValuesSet(true);
+      toast.success("Values set!");
+    } else toast.error("Please enter a valid number");
+  }
+
   return (
     <div className="flex flex-col justify-center bg-slate-900 min-h-screen text-gray-100">
+      <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center ">
@@ -63,25 +72,13 @@ function tabata() {
               value={minutesInput}
               onChange={(e) => setMinutesInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  if (valueSetting(setValueError, intMins)) {
-                    setValuesSet(true);
-                  }
-                }
+                if (e.key === "Enter") handleValueSetting();
               }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
             />
           </div>
           <button
-            onClick={() => {
-              if (valueSetting(setValueError, intMins)) {
-                setValuesSet(true);
-                console.log("minutes: " + minutesInput);
-                console.log("rounds: " + rounds);
-                console.log("seconds: " + seconds);
-                console.log("restSeconds: " + restSeconds);
-              }
-            }}
+            onClick={() => handleValueSetting()}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set

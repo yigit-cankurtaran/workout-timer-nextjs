@@ -5,6 +5,7 @@ import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
+import toast, { Toaster } from "react-hot-toast";
 
 function emom() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -44,8 +45,16 @@ function emom() {
     if (restRunning) setRestRunning(false);
   }
 
+  function handleValueSetting() {
+    if (valueSetting(setValueError, workSeconds, restSeconds, intMins)) {
+      setValuesSet(true);
+      toast.success("Values set!");
+    } else toast.error("Please enter a valid number");
+  }
+
   return (
     <div className="flex bg-slate-900 text-gray-100 flex-col flex-grow h-screen justify-center items-center">
+      <Toaster />
       {/* inputs */}
       {!valuesSet && (
         <div className="flex flex-col">
@@ -75,13 +84,7 @@ function emom() {
 
           {/* setting button */}
           <button
-            onClick={() => {
-              if (
-                valueSetting(setValueError, workSeconds, restSeconds, intMins)
-              ) {
-                setValuesSet(true);
-              }
-            }}
+            onClick={() => handleValueSetting()}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set

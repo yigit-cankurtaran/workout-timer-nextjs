@@ -5,6 +5,7 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkTimer from "@/components/worktimer";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
+import toast, { Toaster } from "react-hot-toast";
 
 // p much just amrap just with a different name
 function fortime() {
@@ -32,8 +33,17 @@ function fortime() {
     if (restRunning) setRestRunning(false);
   }
 
+  function handleValueSetting() {
+    if (valueSetting(setValueError, intMins)) {
+      setValuesSet(true);
+      setSeconds(minutesToSeconds(intMins));
+      toast.success("Values set!");
+    } else toast.error("Please enter a valid number");
+  }
+
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center ">
@@ -45,10 +55,7 @@ function fortime() {
               // makes the input send with an enter
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (valueSetting(setValueError, intMins)) {
-                    setValuesSet(true);
-                    setSeconds(minutesToSeconds(intMins));
-                  }
+                  handleValueSetting();
                 }
               }}
               className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
@@ -56,12 +63,7 @@ function fortime() {
           </div>
 
           <button
-            onClick={() => {
-              if (valueSetting(setValueError, intMins)) {
-                setValuesSet(true);
-                setSeconds(minutesToSeconds(intMins));
-              }
-            }}
+            onClick={() => handleValueSetting()}
             className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
           >
             set
