@@ -7,8 +7,6 @@ type ControlButtonsProps = {
   startWorkout: () => void;
 };
 
-// TODO: add a cancel button for edit
-
 function ControlButtons({
   workoutStarted,
   setValuesSet,
