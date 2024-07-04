@@ -12,6 +12,7 @@ export default function Footer() {
           >
             Yiğit Cankurtaran
           </a>{" "}
+          with ❤️
         </p>
       </div>
     </footer>
