@@ -16,19 +16,19 @@ function ControlButtons({
   return (
     <div className="flex flex-col justify-center items-center">
       <button
-        className="text-blue-400 hover:text-blue-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+        className="text-slate-300 hover:text-white text-xl font-bold text-center p-4 m-4 bg-gray-800 rounded-lg w-48"
         onClick={workoutStarted ? stopWorkout : startWorkout}
       >
         {workoutStarted ? "stop" : "start"}
       </button>
       <button
-        className="text-blue-400 hover:text-blue-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+        className="text-slate-300 hover:text-white text-xl font-bold text-center p-4 m-4 bg-gray-800 rounded-lg w-48"
         onClick={() => {
           stopWorkout();
           setValuesSet(false);
         }}
       >
-        edit values
+        edit
       </button>
     </div>
   );

@@ -50,8 +50,8 @@ function amrap() {
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (
         <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center ">
-            <p className="font-bold p-4">minutes:</p>
+          <div className="flex p-4 flex-col items-center">
+            <p className="p-2 text-xl font-extrabold">minutes</p>
             <input
               type="number"
               value={minutesInput}
@@ -62,7 +62,7 @@ function amrap() {
                   handleValueSetting();
                 }
               }}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
           </div>
 

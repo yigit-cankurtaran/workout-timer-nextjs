@@ -46,27 +46,27 @@ function hiit() {
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center">
-            <p className="font-bold p-2">work</p>
+            <p className="p-2 text-xl font-extrabold">work</p>
             <input
               type="number"
               value={seconds}
               onChange={(e) => setSeconds(Number(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
-            <p className="font-bold p-2">rest</p>
+            <p className="p-2 text-xl font-extrabold">rest</p>
             <input
               type="number"
               value={restSeconds}
               onChange={(e) => setRestSeconds(Number(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
-            <p className="font-bold p-2">rounds</p>
+            <p className="p-2 text-xl font-extrabold">rounds</p>
             <input
               type="number"
               value={rounds}
               onChange={(e) => setRounds(Number(e.target.value))}
               // TODO: leading 0 doesn't look good, fix this later on
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
           </div>
 

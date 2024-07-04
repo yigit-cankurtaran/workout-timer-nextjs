@@ -48,7 +48,7 @@ function fortime() {
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center ">
-            <p className="font-bold p-4">minutes:</p>
+            <p className="p-2 text-xl font-extrabold">minutes:</p>
             <input
               type="number"
               value={minutesInput}
@@ -59,7 +59,7 @@ function fortime() {
                   handleValueSetting();
                 }
               }}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
           </div>
 

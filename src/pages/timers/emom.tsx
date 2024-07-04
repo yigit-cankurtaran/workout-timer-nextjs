@@ -60,26 +60,26 @@ function emom() {
       {!valuesSet && (
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center">
-            <p className="font-bold p-4">minutes:</p>
+            <p className="p-2 text-xl font-extrabold">minutes</p>
             <input
               type="number"
               value={minutesInput}
               onChange={(e) => setMinutesInput(e.target.value)}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
-            <p className="font-bold p-2">work seconds</p>
+            <p className="p-2 text-xl font-extrabold">work seconds</p>
             <input
               type="number"
               value={workSeconds}
               onChange={(e) => setWorkSeconds(Number(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
-            <p className="font-bold p-2">rest seconds</p>
+            <p className="p-2 text-xl font-extrabold">rest seconds</p>
             <input
               type="number"
               value={restSeconds}
               onChange={(e) => setRestSeconds(Number(e.target.value))}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
           </div>
 

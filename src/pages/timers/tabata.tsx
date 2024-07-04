@@ -63,8 +63,8 @@ function tabata() {
       <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center ">
-            <p id="minutes" className="p-2 font-bold">
+          <div className="flex p-4 flex-col items-center">
+            <p id="minutes" className="p-2 text-xl font-extrabold">
               minutes
             </p>
             <input
@@ -75,7 +75,7 @@ function tabata() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleValueSetting();
               }}
-              className="text-center bg-slate-900 text-gray-100 border-4 border-gray-100 p-2 rounded-lg"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
             />
           </div>
           <SetButton handleValueSetting={handleValueSetting} />
