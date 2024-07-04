@@ -75,7 +75,7 @@ function tabata() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") handleValueSetting();
               }}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
           <SetButton handleValueSetting={handleValueSetting} />

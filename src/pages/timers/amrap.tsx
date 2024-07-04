@@ -18,8 +18,8 @@ function amrap() {
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
-  const [reps, setReps] = useState(0);
   const [valueError, setValueError] = useState(false);
+  // TODO: style the toast message
 
   function startWorkout() {
     console.log("workout started");
@@ -43,7 +43,6 @@ function amrap() {
     } else toast.error("Please enter a valid number");
   }
 
-  // TODO: design changes. needs more spacing
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
       <Toaster />
@@ -62,7 +61,7 @@ function amrap() {
                   handleValueSetting();
                 }
               }}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
 

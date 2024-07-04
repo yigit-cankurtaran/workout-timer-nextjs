@@ -51,14 +51,14 @@ function hiit() {
               type="number"
               value={seconds}
               onChange={(e) => setSeconds(Number(e.target.value))}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
             <p className="p-2 text-xl font-extrabold">rest</p>
             <input
               type="number"
               value={restSeconds}
               onChange={(e) => setRestSeconds(Number(e.target.value))}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
             <p className="p-2 text-xl font-extrabold">rounds</p>
             <input
@@ -66,7 +66,7 @@ function hiit() {
               value={rounds}
               onChange={(e) => setRounds(Number(e.target.value))}
               // TODO: leading 0 doesn't look good, fix this later on
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-100 p-4 rounded-lg w-64"
+              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
 
