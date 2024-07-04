@@ -6,6 +6,7 @@ import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import ControlButtons from "@/components/controlbuttons";
 import toast, { Toaster } from "react-hot-toast";
+import SetButton from "@/components/setbutton";
 
 function hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -69,12 +70,7 @@ function hiit() {
             />
           </div>
 
-          <button
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-            onClick={() => handleValueSetting()}
-          >
-            set
-          </button>
+          <SetButton handleValueSetting={handleValueSetting} />
         </div>
       )}
 

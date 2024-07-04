@@ -6,6 +6,7 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
 import toast, { Toaster } from "react-hot-toast";
+import SetButton from "@/components/setbutton";
 
 function emom() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -26,16 +27,13 @@ function emom() {
       setRounds(intMins);
     }
   }, [minutesInput]);
+  // TODO: round change works properly but the display doesnt change
 
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
     setWorkRunning(true);
     setWorkoutCompleted(false);
-
-    // this is to reset the rounds to the original value
-    setMinutesInput("10");
-    setRounds(10);
   }
 
   function stopWorkout() {
@@ -43,6 +41,9 @@ function emom() {
     setWorkoutStarted(false);
     if (workRunning) setWorkRunning(false);
     if (restRunning) setRestRunning(false);
+    // this is to reset the rounds to the original value
+    setMinutesInput("10");
+    setRounds(10);
   }
 
   function handleValueSetting() {
@@ -82,13 +83,7 @@ function emom() {
             />
           </div>
 
-          {/* setting button */}
-          <button
-            onClick={() => handleValueSetting()}
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-          >
-            set
-          </button>
+          <SetButton handleValueSetting={handleValueSetting} />
         </div>
       )}
 

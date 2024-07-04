@@ -6,6 +6,7 @@ import WorkTimer from "@/components/worktimer";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
 import toast, { Toaster } from "react-hot-toast";
+import SetButton from "@/components/setbutton";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -65,12 +66,7 @@ function amrap() {
             />
           </div>
 
-          <button
-            onClick={() => handleValueSetting()}
-            className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
-          >
-            set
-          </button>
+          <SetButton handleValueSetting={handleValueSetting} />
         </div>
       )}
 
