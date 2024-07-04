@@ -8,7 +8,7 @@ export default function Footer() {
             href="https://github.com/yigit-cankurtaran"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-400 hover:text-red-600"
+            className="text-blue-400 hover:text-blue-600"
           >
             Yiğit Cankurtaran
           </a>{" "}

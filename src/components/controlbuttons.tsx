@@ -16,13 +16,13 @@ function ControlButtons({
   return (
     <div className="flex flex-col justify-center items-center">
       <button
-        className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+        className="text-blue-400 hover:text-blue-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
         onClick={workoutStarted ? stopWorkout : startWorkout}
       >
         {workoutStarted ? "stop" : "start"}
       </button>
       <button
-        className="text-red-400 hover:text-red-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
+        className="text-blue-400 hover:text-blue-600 p-2 m-2 bg-gray-800 rounded-lg w-32 h-10 self-center"
         onClick={() => {
           stopWorkout();
           setValuesSet(false);
