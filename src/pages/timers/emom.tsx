@@ -13,7 +13,7 @@ function emom() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
-  const [rounds, setRounds] = useState(10);
+  const [rounds, setRounds] = useState(intMins);
   const [workSeconds, setWorkSeconds] = useState(45);
   const [restSeconds, setRestSeconds] = useState(15);
   const [workoutStarted, setWorkoutStarted] = useState(false);
@@ -28,7 +28,6 @@ function emom() {
       setRounds(intMins);
     }
   }, [minutesInput]);
-  // TODO: round change works properly but the display doesnt change
 
   function startWorkout() {
     console.log("workout started");
@@ -40,11 +39,8 @@ function emom() {
   function stopWorkout() {
     console.log("workout stopped");
     setWorkoutStarted(false);
-    if (workRunning) setWorkRunning(false);
-    if (restRunning) setRestRunning(false);
-    // this is to reset the rounds to the original value
-    setMinutesInput("10");
-    setRounds(10);
+    setWorkRunning(false);
+    setRestRunning(false);
   }
 
   function handleValueSetting() {
@@ -53,6 +49,16 @@ function emom() {
       successToast("Values set!");
     } else errorToast("All values must be valid");
   }
+
+  useEffect(() => {
+    if (rounds === 0 && workoutStarted) {
+      console.log("workout completed");
+      setWorkoutCompleted(true);
+      stopWorkout();
+    }
+  }, [rounds, workoutStarted]);
+  // using useEffect instead of relying on the workTimer
+  // check later if we really need this
 
   return (
     <div className="flex bg-slate-900 text-gray-100 flex-col flex-grow h-screen justify-center items-center">
@@ -92,14 +98,14 @@ function emom() {
       <div className="flex flex-col items-center justify-center">
         <WorkoutDisplay workoutStarted={workoutStarted} rounds={rounds} />
         {/* work timer */}
-        {workRunning && (
+        {workRunning && rounds > 0 && (
           <WorkTimer
             seconds={workSeconds}
-            rounds={intMins}
+            rounds={rounds}
             setWorkoutCompleted={setWorkoutCompleted}
             setWorkRunning={setWorkRunning}
             setRestRunning={setRestRunning}
-            setRounds={() => {}} // not used
+            setRounds={setRounds}
             stopWorkout={stopWorkout}
           />
         )}
