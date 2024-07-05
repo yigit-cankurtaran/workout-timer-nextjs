@@ -4,8 +4,9 @@ import valueSetting from "@/hooks/valueSetting";
 import WorkTimer from "@/components/worktimer";
 import RestTimer from "@/components/resttimer";
 import ControlButtons from "@/components/controlbuttons";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/setbutton";
+import { errorToast, successToast } from "@/components/customToast";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -54,8 +55,8 @@ function tabata() {
   function handleValueSetting() {
     if (valueSetting(setValueError, intMins)) {
       setValuesSet(true);
-      toast.success("Values set!");
-    } else toast.error("Please enter a valid number");
+      successToast("Values set!");
+    } else errorToast("Please enter a valid number");
   }
 
   return (

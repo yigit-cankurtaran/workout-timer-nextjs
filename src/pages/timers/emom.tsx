@@ -5,8 +5,9 @@ import valueSetting from "@/hooks/valueSetting";
 import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/setbutton";
+import { errorToast, successToast } from "@/components/customToast";
 
 function emom() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -49,8 +50,8 @@ function emom() {
   function handleValueSetting() {
     if (valueSetting(setValueError, workSeconds, restSeconds, intMins)) {
       setValuesSet(true);
-      toast.success("Values set!");
-    } else toast.error("Please enter a valid number");
+      successToast("Values set!");
+    } else errorToast("All values must be valid");
   }
 
   return (

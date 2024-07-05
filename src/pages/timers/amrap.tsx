@@ -5,7 +5,8 @@ import WorkoutDisplay from "@/components/workoutdisplay";
 import WorkTimer from "@/components/worktimer";
 import WorkoutComplete from "@/components/workoutcomplete";
 import ControlButtons from "@/components/controlbuttons";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { successToast, errorToast } from "@/components/customToast";
 import SetButton from "@/components/setbutton";
 
 function amrap() {
@@ -19,7 +20,6 @@ function amrap() {
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
-  // TODO: style the toast message
 
   function startWorkout() {
     console.log("workout started");
@@ -39,8 +39,8 @@ function amrap() {
     if (valueSetting(setValueError, intMins)) {
       setValuesSet(true);
       setSeconds(minutesToSeconds(intMins));
-      toast.success("Values set!");
-    } else toast.error("Please enter a valid number");
+      successToast("Values set!");
+    } else errorToast("Please enter a valid number");
   }
 
   return (
