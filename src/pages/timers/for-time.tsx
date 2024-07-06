@@ -45,6 +45,7 @@ function fortime() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      {/* for toast messages */}
       <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
@@ -64,11 +65,13 @@ function fortime() {
             />
           </div>
 
+          {/* button for setting the values */}
           <SetButton handleValueSetting={handleValueSetting} />
         </div>
       )}
 
       <div className="flex flex-col items-center justify-center">
+        {/* display for the work-rest cycles and rounds (if any) */}
         <WorkoutDisplay workoutStarted={workoutStarted} />
         {workRunning && (
           <WorkTimer
@@ -83,7 +86,9 @@ function fortime() {
           />
         )}
       </div>
+      {/* workout complete display */}
       <WorkoutComplete workoutCompleted={workoutCompleted} />
+      {/* if values are set, display start-stop buttons */}
       {valuesSet && (
         <ControlButtons
           workoutStarted={workoutStarted}

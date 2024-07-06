@@ -90,6 +90,7 @@ function tabata() {
             <p>rounds: {rounds}</p>
           </div>
         )}
+        {/* if work is running and rounds are above 0, display worktTimer  */}
         {workRunning && rounds > 0 && (
           <WorkTimer
             seconds={seconds}
@@ -101,6 +102,7 @@ function tabata() {
             setRounds={setRounds}
           />
         )}
+        {/* if rest is running run RestTimer */}
         {restRunning && (
           <RestTimer
             restSeconds={restSeconds}
