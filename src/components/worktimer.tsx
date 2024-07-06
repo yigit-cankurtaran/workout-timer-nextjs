@@ -11,6 +11,8 @@ type WorkTimerProps = {
   stopWorkout: () => void;
 };
 
+// TODO: implement sounds
+
 export default function WorkTimer({
   seconds,
   rounds,
