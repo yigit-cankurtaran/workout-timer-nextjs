@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import minutesToSeconds from "@/helpers/minutesToSeconds";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
@@ -45,6 +46,13 @@ function amrap() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Helmet prioritizeSeoTags>
+        <title>AMRAP Timer</title>
+        <meta
+          name="description"
+          content="As many rounds as possible (AMRAP) timer for workouts"
+        />
+      </Helmet>
       <Toaster />
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import minutesToSeconds from "@/helpers/minutesToSeconds";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
@@ -45,6 +46,10 @@ function fortime() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Helmet prioritizeSeoTags>
+        <title>For Time Timer</title>
+        <meta name="description" content="For Time timer for workouts" />
+      </Helmet>
       {/* for toast messages */}
       <Toaster />
       {!valuesSet && (

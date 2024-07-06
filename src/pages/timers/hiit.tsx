@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
 import WorkoutComplete from "@/components/WorkoutComplete";
@@ -43,6 +44,13 @@ function hiit() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+      <Helmet prioritizeSeoTags>
+        <title>HIIT Timer</title>
+        <meta
+          name="description"
+          content="High Intensity Interval Training (HIIT) timer for workouts"
+        />
+      </Helmet>
       <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">

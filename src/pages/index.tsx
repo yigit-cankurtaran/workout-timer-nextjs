@@ -3,6 +3,7 @@ import fs from "fs";
 // file system module to read the files in the directory
 import path from "path";
 // path module to get the file path
+import { Helmet } from "react-helmet-async";
 
 type TimerLink = {
   href: string;
@@ -16,6 +17,13 @@ type TimerLinks = {
 export default function Home({ timerLinks }: TimerLinks) {
   return (
     <div className="flex-grow flex justify-center items-center flex-col w-full bg-slate-900 text-gray-100">
+      <Helmet prioritizeSeoTags>
+        <title>Workout Timers</title>
+        <meta
+          name="description"
+          content="Workout timers for different types of workouts"
+        />
+      </Helmet>
       {timerLinks.map(({ href, name }: TimerLink) => (
         <Link
           key={name}

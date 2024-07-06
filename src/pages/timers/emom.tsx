@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import WorkTimer from "@/components/WorkTimer";
 import RestTimer from "@/components/RestTimer";
 import valueSetting from "@/helpers/valueSetting";
@@ -62,6 +63,13 @@ function emom() {
 
   return (
     <div className="flex bg-slate-900 text-gray-100 flex-col flex-grow h-screen justify-center items-center">
+      <Helmet prioritizeSeoTags>
+        <title>EMOM Timer</title>
+        <meta
+          name="description"
+          content="Every minute on the minute (EMOM) timer for workouts"
+        />
+      </Helmet>
       <Toaster />
       {/* inputs */}
       {!valuesSet && (
