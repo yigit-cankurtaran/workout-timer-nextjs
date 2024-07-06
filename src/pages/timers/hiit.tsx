@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import valueSetting from "@/hooks/valueSetting";
-import WorkoutDisplay from "@/components/workoutdisplay";
-import WorkoutComplete from "@/components/workoutcomplete";
-import WorkTimer from "@/components/worktimer";
-import RestTimer from "@/components/resttimer";
-import ControlButtons from "@/components/controlbuttons";
+import valueSetting from "@/helpers/valueSetting";
+import WorkoutDisplay from "@/components/WorkoutDisplay";
+import WorkoutComplete from "@/components/WorkoutComplete";
+import WorkTimer from "@/components/WorkTimer";
+import RestTimer from "@/components/RestTimer";
+import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import SetButton from "@/components/setbutton";
-import { errorToast, successToast } from "@/components/customToast";
+import SetButton from "@/components/SetButton";
+import { errorToast, successToast } from "@/components/CustomToast";
 
 function hiit() {
   const [valuesSet, setValuesSet] = useState(false);

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 // need to use useEffect for the rounds value
-import valueSetting from "@/hooks/valueSetting";
-import WorkTimer from "@/components/worktimer";
-import RestTimer from "@/components/resttimer";
-import ControlButtons from "@/components/controlbuttons";
+import valueSetting from "@/helpers/valueSetting";
+import WorkTimer from "@/components/WorkTimer";
+import RestTimer from "@/components/RestTimer";
+import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import SetButton from "@/components/setbutton";
-import { errorToast, successToast } from "@/components/customToast";
+import SetButton from "@/components/SetButton";
+import { errorToast, successToast } from "@/components/CustomToast";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);

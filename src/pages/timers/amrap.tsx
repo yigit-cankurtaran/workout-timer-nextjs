@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import minutesToSeconds from "@/hooks/minutesToSeconds";
-import valueSetting from "@/hooks/valueSetting";
-import WorkoutDisplay from "@/components/workoutdisplay";
-import WorkTimer from "@/components/worktimer";
-import WorkoutComplete from "@/components/workoutcomplete";
-import ControlButtons from "@/components/controlbuttons";
+import minutesToSeconds from "@/helpers/minutesToSeconds";
+import valueSetting from "@/helpers/valueSetting";
+import WorkoutDisplay from "@/components/WorkoutDisplay";
+import WorkTimer from "@/components/WorkTimer";
+import WorkoutComplete from "@/components/WorkoutComplete";
+import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import { successToast, errorToast } from "@/components/customToast";
-import SetButton from "@/components/setbutton";
+import { successToast, errorToast } from "@/components/CustomToast";
+import SetButton from "@/components/SetButton";
 
 function amrap() {
   const [valuesSet, setValuesSet] = useState(false);
