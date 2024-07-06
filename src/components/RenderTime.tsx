@@ -1,4 +1,4 @@
-import formatTime from "../hooks/formatTime";
+import formatTime from "../helpers/formatTime";
 
 export default function RenderTime({
   remainingTime,
