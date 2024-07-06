@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WorkTimer from "@/components/WorkTimer";
 import RestTimer from "@/components/RestTimer";
-import valueSetting from "@/hooks/valueSetting";
+import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
 import WorkoutComplete from "@/components/WorkoutComplete";
 import ControlButtons from "@/components/ControlButtons";
