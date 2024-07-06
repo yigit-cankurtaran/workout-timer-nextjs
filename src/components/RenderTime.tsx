@@ -11,7 +11,7 @@ export default function RenderTime({
   return (
     <div>
       <h1>{formatTime(remainingTime)}</h1>
-      {/* doesn't seem to work?? will check out */}
+      {/* TODO: style these */}
     </div>
   );
 }

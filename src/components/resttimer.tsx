@@ -6,6 +6,7 @@ type RestTimerProps = {
   setRestRunning: (value: boolean) => void;
   setWorkRunning: (value: boolean) => void;
 };
+// TOOD: find a sound for the end of the rest timer and implement
 
 export default function RestTimer({
   restSeconds,
