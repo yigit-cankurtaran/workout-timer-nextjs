@@ -11,8 +11,6 @@ export default function RenderTime({
   return (
     <div>
       <h1 className="font-bold text-3xl">{formatTime(remainingTime)}</h1>
-      {/* TODO: style these */}
-      {/* restTimer has default styling on its text?? */}
     </div>
   );
 }

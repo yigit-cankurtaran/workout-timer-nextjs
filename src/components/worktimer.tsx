@@ -12,7 +12,6 @@ type WorkTimerProps = {
   setRounds: (value: number) => void;
   stopWorkout: () => void;
 };
-// TODO: style the work timer and the rest timer
 
 export default function WorkTimer({
   seconds,
