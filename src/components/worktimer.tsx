@@ -52,6 +52,8 @@ export default function WorkTimer({
             // plays ding sound after each round
           }
         }}
+        strokeWidth={20}
+        size={256}
       >
         {({ remainingTime }) => {
           // using remainingTime from the children of the CountdownCircleTimer component

@@ -15,11 +15,15 @@ export default function WorkoutDisplay({
 
   return (
     <div className="text-center">
-      <h1>
+      <h1 className="font-bold text-xl">
         {/* if workRunning exists change between work and rest, else it's just work */}
-        {workRunning !== undefined ? (workRunning ? "work" : "rest") : "work"}
+        {workRunning !== undefined
+          ? workRunning
+            ? "work 💪🏻"
+            : "rest 💨"
+          : "work 💪🏻"}
       </h1>
-      {rounds > 0 && <p>rounds: {rounds}</p>}
+      {rounds > 0 && <p className="font-semibold text-lg">rounds: {rounds}</p>}
     </div>
   );
 }

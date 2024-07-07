@@ -8,6 +8,7 @@ import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
 import { errorToast, successToast } from "@/components/CustomToast";
+import WorkoutDisplay from "@/components/WorkoutDisplay";
 
 function tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -92,12 +93,11 @@ function tabata() {
       )}
 
       <div className="flex flex-col items-center justify-center">
-        {workoutStarted && (
-          <div>
-            <h1 className="text-center">{workRunning ? "work" : "rest"}</h1>
-            <p>rounds: {rounds}</p>
-          </div>
-        )}
+        <WorkoutDisplay
+          workoutStarted={workoutStarted}
+          workRunning={workRunning}
+          rounds={rounds}
+        />
         {/* if work is running and rounds are above 0, display worktTimer  */}
         {workRunning && rounds > 0 && (
           <WorkTimer

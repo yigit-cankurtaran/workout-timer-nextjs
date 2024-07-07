@@ -1,12 +1,13 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import RenderTime from "./RenderTime";
+import useSound from "use-sound";
 
 type RestTimerProps = {
   restSeconds: number;
   setRestRunning: (value: boolean) => void;
   setWorkRunning: (value: boolean) => void;
 };
-// TOOD: find a sound for the end of the rest timer and implement
+// TODO: find a sound for the end of the rest timer and implement
 
 export default function RestTimer({
   restSeconds,
@@ -25,6 +26,8 @@ export default function RestTimer({
           setRestRunning(false);
           setWorkRunning(true);
         }}
+        strokeWidth={20}
+        size={256}
       >
         {RenderTime}
       </CountdownCircleTimer>

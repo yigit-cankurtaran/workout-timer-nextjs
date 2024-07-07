@@ -104,7 +104,11 @@ function emom() {
 
       {/* workout display */}
       <div className="flex flex-col items-center justify-center">
-        <WorkoutDisplay workoutStarted={workoutStarted} rounds={rounds} />
+        <WorkoutDisplay
+          workoutStarted={workoutStarted}
+          workRunning={workRunning}
+          rounds={rounds}
+        />
         {/* work timer */}
         {workRunning && rounds > 0 && (
           <WorkTimer
