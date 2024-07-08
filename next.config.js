@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
-  basePath: "/workout-timer-next",
-  assetPrefix: "/workout-timer-next/",
 };
 
 module.exports = nextConfig;
