@@ -11,7 +11,7 @@ import SetButton from "@/components/SetButton";
 import { errorToast, successToast } from "@/components/CustomToast";
 
 // p much just amrap just with a different name
-function fortime() {
+function Fortime() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
@@ -106,4 +106,4 @@ function fortime() {
   );
 }
 
-export default fortime;
+export default Fortime;

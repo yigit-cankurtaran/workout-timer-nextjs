@@ -10,7 +10,7 @@ import SetButton from "@/components/SetButton";
 import { errorToast, successToast } from "@/components/CustomToast";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
 
-function tabata() {
+function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
   const intMins = parseInt(minutesInput);
@@ -132,4 +132,4 @@ function tabata() {
   );
 }
 
-export default tabata;
+export default Tabata;

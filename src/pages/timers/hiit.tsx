@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
 import { errorToast, successToast } from "@/components/CustomToast";
 
-function hiit() {
+function Hiit() {
   const [valuesSet, setValuesSet] = useState(false);
   const [seconds, setSeconds] = useState(20);
   const [restSeconds, setRestSeconds] = useState(10);
@@ -121,4 +121,4 @@ function hiit() {
   );
 }
 
-export default hiit;
+export default Hiit;

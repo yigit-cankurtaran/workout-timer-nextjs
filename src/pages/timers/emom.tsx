@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
 import { errorToast, successToast } from "@/components/CustomToast";
 
-function emom() {
+function Emom() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
@@ -143,4 +143,4 @@ function emom() {
   );
 }
 
-export default emom;
+export default Emom;

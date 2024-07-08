@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { successToast, errorToast } from "@/components/CustomToast";
 import SetButton from "@/components/SetButton";
 
-function amrap() {
+function Amrap() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
@@ -105,4 +105,4 @@ function amrap() {
   );
 }
 
-export default amrap;
+export default Amrap;
