@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import minutesToSeconds from "@/helpers/minutesToSeconds";
 import valueSetting from "@/helpers/valueSetting";
-import WorkoutDisplay from "@/components/WorkoutDisplay";
-import WorkTimer from "@/components/WorkTimer";
-import WorkoutComplete from "@/components/WorkoutComplete";
-import ControlButtons from "@/components/ControlButtons";
+import WorkoutDisplay from "@/stuff/WorkoutDisplay";
+import WorkTimer from "@/stuff/WorkTimer";
+import WorkoutComplete from "@/stuff/WorkoutComplete";
+import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import SetButton from "@/components/SetButton";
-import { ErrorToast, SuccessToast } from "@/components/CustomToast";
+import SetButton from "@/stuff/SetButton";
+import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 
 // p much just amrap just with a different name
 function Fortime() {

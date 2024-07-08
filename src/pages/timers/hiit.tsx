@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import valueSetting from "@/helpers/valueSetting";
-import WorkoutDisplay from "@/components/WorkoutDisplay";
-import WorkoutComplete from "@/components/WorkoutComplete";
-import WorkTimer from "@/components/WorkTimer";
-import RestTimer from "@/components/RestTimer";
-import ControlButtons from "@/components/ControlButtons";
+import WorkoutDisplay from "@/stuff/WorkoutDisplay";
+import WorkoutComplete from "@/stuff/WorkoutComplete";
+import WorkTimer from "@/stuff/WorkTimer";
+import RestTimer from "@/stuff/RestTimer";
+import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import SetButton from "@/components/SetButton";
-import { ErrorToast, SuccessToast } from "@/components/CustomToast";
+import SetButton from "@/stuff/SetButton";
+import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 
 function Hiit() {
   const [valuesSet, setValuesSet] = useState(false);

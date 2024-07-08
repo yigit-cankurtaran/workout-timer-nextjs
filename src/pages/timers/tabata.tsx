@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 // need to use useEffect for the rounds value
 import valueSetting from "@/helpers/valueSetting";
-import WorkTimer from "@/components/WorkTimer";
-import RestTimer from "@/components/RestTimer";
-import ControlButtons from "@/components/ControlButtons";
+import WorkTimer from "@/stuff/WorkTimer";
+import RestTimer from "@/stuff/RestTimer";
+import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import SetButton from "@/components/SetButton";
-import { ErrorToast, SuccessToast } from "@/components/CustomToast";
-import WorkoutDisplay from "@/components/WorkoutDisplay";
+import SetButton from "@/stuff/SetButton";
+import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import WorkoutDisplay from "@/stuff/WorkoutDisplay";
 
 function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
