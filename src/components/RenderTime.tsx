@@ -6,7 +6,7 @@ export default function RenderTime({
   remainingTime: number;
 }) {
   if (remainingTime === 0) {
-    return <p>You're done!</p>;
+    return <p>You&apos;re done!</p>;
   }
   return (
     <div>
