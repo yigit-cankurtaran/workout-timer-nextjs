@@ -7,7 +7,7 @@ import WorkTimer from "@/components/WorkTimer";
 import WorkoutComplete from "@/components/WorkoutComplete";
 import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import { successToast, errorToast } from "@/components/CustomToast";
+import { SuccessToast, ErrorToast } from "@/components/CustomToast";
 import SetButton from "@/components/SetButton";
 
 function Amrap() {
@@ -40,8 +40,8 @@ function Amrap() {
     if (valueSetting(setValueError, intMins)) {
       setValuesSet(true);
       setSeconds(minutesToSeconds(intMins));
-      successToast("Values set!");
-    } else errorToast("Please enter a valid number");
+      SuccessToast("Values set!");
+    } else ErrorToast("Please enter a valid number");
   }
 
   return (

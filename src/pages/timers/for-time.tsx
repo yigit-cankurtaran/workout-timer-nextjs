@@ -8,7 +8,7 @@ import WorkoutComplete from "@/components/WorkoutComplete";
 import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
-import { errorToast, successToast } from "@/components/CustomToast";
+import { ErrorToast, SuccessToast } from "@/components/CustomToast";
 
 // p much just amrap just with a different name
 function Fortime() {
@@ -40,8 +40,8 @@ function Fortime() {
     if (valueSetting(setValueError, intMins)) {
       setValuesSet(true);
       setSeconds(minutesToSeconds(intMins));
-      successToast("Values set!");
-    } else errorToast("Please enter a valid number");
+      SuccessToast("Values set!");
+    } else ErrorToast("Please enter a valid number");
   }
 
   return (

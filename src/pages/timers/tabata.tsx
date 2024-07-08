@@ -7,7 +7,7 @@ import RestTimer from "@/components/RestTimer";
 import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
-import { errorToast, successToast } from "@/components/CustomToast";
+import { ErrorToast, SuccessToast } from "@/components/CustomToast";
 import WorkoutDisplay from "@/components/WorkoutDisplay";
 
 function Tabata() {
@@ -57,8 +57,8 @@ function Tabata() {
   function handleValueSetting() {
     if (valueSetting(setValueError, intMins)) {
       setValuesSet(true);
-      successToast("Values set!");
-    } else errorToast("Please enter a valid number");
+      SuccessToast("Values set!");
+    } else ErrorToast("Please enter a valid number");
   }
 
   return (

@@ -8,7 +8,7 @@ import RestTimer from "@/components/RestTimer";
 import ControlButtons from "@/components/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/components/SetButton";
-import { errorToast, successToast } from "@/components/CustomToast";
+import { ErrorToast, SuccessToast } from "@/components/CustomToast";
 
 function Hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -38,8 +38,8 @@ function Hiit() {
   function handleValueSetting() {
     if (valueSetting(setValueError, seconds, restSeconds, rounds)) {
       setValuesSet(true);
-      successToast("Values set!");
-    } else errorToast("All values must be valid");
+      SuccessToast("Values set!");
+    } else ErrorToast("All values must be valid");
   }
 
   return (
