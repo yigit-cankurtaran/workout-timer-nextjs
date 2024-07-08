@@ -7,13 +7,15 @@ type RestTimerProps = {
   setRestRunning: (value: boolean) => void;
   setWorkRunning: (value: boolean) => void;
 };
-// TODO: find a sound for the end of the rest timer and implement
 
 export default function RestTimer({
   restSeconds,
   setRestRunning,
   setWorkRunning,
 }: RestTimerProps) {
+  const restChime = "../assets/sounds/restchime.mp3";
+  const [playRest] = useSound(restChime);
+
   return (
     <div>
       <CountdownCircleTimer
@@ -23,6 +25,7 @@ export default function RestTimer({
         colorsTime={[restSeconds, 0]}
         onComplete={() => {
           console.log("rest timer ended by itself");
+          playRest();
           setRestRunning(false);
           setWorkRunning(true);
         }}

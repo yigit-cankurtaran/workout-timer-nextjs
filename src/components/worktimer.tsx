@@ -25,6 +25,7 @@ export default function WorkTimer({
   const beepSound = "../assets/sounds/beep.mp3";
   const dingSound = "../assets/sounds/ding.mp3";
   const [playBeep] = useSound(beepSound);
+  // brackets because we're destructuring the return value of useSound
   const [playDing] = useSound(dingSound);
 
   const lastRemainingTimeRef = useRef<number>(seconds);
