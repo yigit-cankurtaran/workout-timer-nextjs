@@ -17,11 +17,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      // trying to see if this fixes the issue
-      "@/pages/*": ["./src/pages/*"],
-      "@/styles/*": ["./src/styles/*"],
-      "@/helpers/*": ["./src/helpers/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
