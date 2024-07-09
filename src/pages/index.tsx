@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import fs from "fs";
 // file system module to read the files in the directory

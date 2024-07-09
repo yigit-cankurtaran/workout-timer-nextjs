@@ -1,3 +1,4 @@
+import React from "react";
 import formatTime from "../helpers/formatTime";
 
 export default function RenderTime({
