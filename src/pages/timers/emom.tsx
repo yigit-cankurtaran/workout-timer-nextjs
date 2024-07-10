@@ -19,6 +19,10 @@ function Emom() {
   const workSeconds = parseInt(strWork);
   const [strRest, setStrRest] = useState("15");
   const restSeconds = parseInt(strRest);
+  // we receive input as string
+  // we later parse it into int
+  // if we receive input as int we get leading 0s
+  // this is how i fix leading 0s
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);

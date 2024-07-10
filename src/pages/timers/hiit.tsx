@@ -12,9 +12,13 @@ import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 
 function Hiit() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [seconds, setSeconds] = useState(20);
-  const [restSeconds, setRestSeconds] = useState(10);
+  const [strSeconds, setStrSeconds] = useState("20");
+  const seconds = parseInt(strSeconds);
+  const [strRest, setStrRest] = useState("10");
+  const restSeconds = parseInt(strRest);
+  // the usual string to int to delete leading zero
   const [rounds, setRounds] = useState(8);
+  // rounds leads to a problem in that, fix it later on
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
@@ -58,15 +62,15 @@ function Hiit() {
             <p className="p-2 text-xl font-extrabold">work</p>
             <input
               type="number"
-              value={seconds}
-              onChange={(e) => setSeconds(Number(e.target.value))}
+              value={strSeconds}
+              onChange={(e) => setStrSeconds(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
             <p className="p-2 text-xl font-extrabold">rest</p>
             <input
               type="number"
               value={restSeconds}
-              onChange={(e) => setRestSeconds(Number(e.target.value))}
+              onChange={(e) => setStrRest(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
             <p className="p-2 text-xl font-extrabold">rounds</p>
@@ -74,7 +78,6 @@ function Hiit() {
               type="number"
               value={rounds}
               onChange={(e) => setRounds(Number(e.target.value))}
-              // TODO: leading 0 doesn't look good, fix this later on
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
