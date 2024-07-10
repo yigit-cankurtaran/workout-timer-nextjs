@@ -15,14 +15,17 @@ function Emom() {
   const [minutesInput, setMinutesInput] = useState("10");
   const intMins = parseInt(minutesInput);
   const [rounds, setRounds] = useState(intMins);
-  const [workSeconds, setWorkSeconds] = useState(45);
-  const [restSeconds, setRestSeconds] = useState(15);
+  const [strWork, setStrWork] = useState("45");
+  const workSeconds = parseInt(strWork);
+  const [strRest, setStrRest] = useState("15");
+  const restSeconds = parseInt(strRest);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
 
+  // resetting rounds
   useEffect(() => {
     const intMins = parseInt(minutesInput);
     if (intMins > 0) {
@@ -85,15 +88,15 @@ function Emom() {
             <p className="p-2 text-xl font-extrabold">work seconds</p>
             <input
               type="number"
-              value={workSeconds}
-              onChange={(e) => setWorkSeconds(Number(e.target.value))}
+              value={strWork}
+              onChange={(e) => setStrWork(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
             <p className="p-2 text-xl font-extrabold">rest seconds</p>
             <input
               type="number"
-              value={restSeconds}
-              onChange={(e) => setRestSeconds(Number(e.target.value))}
+              value={strRest}
+              onChange={(e) => setStrRest(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
