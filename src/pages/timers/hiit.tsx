@@ -34,6 +34,8 @@ function Hiit() {
       setRounds(intRounds);
     }
   }, [strRounds]);
+  // TODO: check the rounds on the other timers as well
+  // if there are any issues fix before release
 
   function startWorkout() {
     console.log("workout started");
