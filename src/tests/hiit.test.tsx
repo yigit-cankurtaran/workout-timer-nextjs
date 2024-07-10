@@ -27,14 +27,14 @@ beforeAll(() => {
 
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import Fortime from "@/pages/timers/for-time";
+import Hiit from "@/pages/timers/hiit";
 // next 2 fix the toBeInTheDocument issue
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 
-describe("For Time Timer", () => {
+describe("HIIT Timer", () => {
   test("set button sets the proper value", async () => {
-    const { getByText } = render(<Fortime />);
+    const { getByText } = render(<Hiit />);
     // using a function to provide more flexible matcher
     const setButton = getByText(/set/i);
     // regex, i means case insensitive
@@ -48,7 +48,7 @@ describe("For Time Timer", () => {
     });
   });
   test("start button starts the timer", async () => {
-    const { getByText, findByText } = render(<Fortime />);
+    const { getByText, findByText } = render(<Hiit />);
 
     const setButton = getByText(/set/i);
     fireEvent.click(setButton);
@@ -63,7 +63,7 @@ describe("For Time Timer", () => {
     await findByText(/edit/i);
   });
   test("stop button stops the timer", async () => {
-    const { getByText, findByText } = render(<Fortime />);
+    const { getByText, findByText } = render(<Hiit />);
 
     const setButton = getByText(/set/i);
     fireEvent.click(setButton);
@@ -79,7 +79,7 @@ describe("For Time Timer", () => {
     await findByText(/edit/i);
   });
   test("edit button allows to edit the timer", async () => {
-    const { getByText, findByText } = render(<Fortime />);
+    const { getByText, findByText } = render(<Hiit />);
 
     const setButton = getByText(/set/i);
     fireEvent.click(setButton);
@@ -93,21 +93,22 @@ describe("For Time Timer", () => {
     // checking for the new buttons that appear after the timer stops
     await findByText(/set/i);
   });
-  test("invalid value setting stays in the same screen", async () => {
-    const { getByText, findByText } = render(<Fortime />);
+  test("invalid minute value setting stays in the same screen", async () => {
+    const { getByText, findByText } = render(<Hiit />);
 
-    // get the input
-    const input = getByText(/minutes/i).nextElementSibling as HTMLInputElement;
+    // get the inputs
+    const roundsInput = getByText(/rounds/i)
+      .nextElementSibling as HTMLInputElement;
 
     // set the input value to an invalid value
-    fireEvent.change(input, { target: { value: "0" } });
+    fireEvent.change(roundsInput, { target: { value: "0" } });
 
     // set the value
     const setButton = getByText(/set/i);
     fireEvent.click(setButton);
 
     // check that it stays on the same page
-    await findByText(/minutes/i);
+    await findByText(/rounds/i);
     await findByText(/set/i);
   });
 });

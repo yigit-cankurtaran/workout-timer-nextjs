@@ -32,7 +32,7 @@ import Amrap from "@/pages/timers/amrap";
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 
-describe("Tabata Timer", () => {
+describe("AMRAP Timer", () => {
   test("set button sets the proper value", async () => {
     const { getByText } = render(<Amrap />);
     // using a function to provide more flexible matcher
