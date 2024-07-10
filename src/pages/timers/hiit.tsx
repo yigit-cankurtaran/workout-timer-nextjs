@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/stuff/WorkoutDisplay";
@@ -17,13 +17,23 @@ function Hiit() {
   const [strRest, setStrRest] = useState("10");
   const restSeconds = parseInt(strRest);
   // the usual string to int to delete leading zero
-  const [rounds, setRounds] = useState(8);
+  const [strRounds, setStrRounds] = useState("8");
   // rounds leads to a problem in that, fix it later on
+  const intRounds = parseInt(strRounds);
+  const [rounds, setRounds] = useState(intRounds);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
+
+  // resetting rounds
+  useEffect(() => {
+    const intRounds = parseInt(strRounds);
+    if (intRounds > 0) {
+      setRounds(intRounds);
+    }
+  }, [strRounds]);
 
   function startWorkout() {
     console.log("workout started");
@@ -40,7 +50,7 @@ function Hiit() {
   }
 
   function handleValueSetting() {
-    if (valueSetting(setValueError, seconds, restSeconds, rounds)) {
+    if (valueSetting(setValueError, seconds, restSeconds, intRounds)) {
       setValuesSet(true);
       SuccessToast("Values set!");
     } else ErrorToast("All values must be valid");
@@ -76,8 +86,8 @@ function Hiit() {
             <p className="p-2 text-xl font-extrabold">rounds</p>
             <input
               type="number"
-              value={rounds}
-              onChange={(e) => setRounds(Number(e.target.value))}
+              value={strRounds}
+              onChange={(e) => setStrRounds(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
             />
           </div>
