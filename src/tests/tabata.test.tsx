@@ -1,9 +1,10 @@
+// mocking helmet because of an error
 jest.mock("react-helmet-async", () => ({
   Helmet: ({ children }: { children: React.ReactNode }) => children,
   HelmetProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-// mocking toast to fix 2 set errors
+// mocking toast to fix the "2 set" issue due to the toast message
 jest.mock("@/stuff/CustomToast", () => ({
   SuccessToast: jest.fn(() => null),
   ErrorToast: jest.fn(() => null),
@@ -17,8 +18,6 @@ beforeAll(() => {
       matches: false, // You can customize this to match specific queries for your tests
       media: query,
       onchange: null,
-      addListener: jest.fn(), // Deprecated
-      removeListener: jest.fn(), // Deprecated
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
       dispatchEvent: jest.fn(),
@@ -27,16 +26,8 @@ beforeAll(() => {
 });
 
 import React from "react";
-import {
-  render,
-  fireEvent,
-  waitFor,
-  findByText,
-  findAllByTitle,
-} from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import Tabata from "@/pages/timers/tabata";
-// import error on this for some reason smh
-// TODO: check and fix this
 // next 2 fix the toBeInTheDocument issue
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
@@ -67,7 +58,56 @@ describe("Tabata Timer", () => {
     fireEvent.click(startButton);
 
     // checking for the new buttons that appear after the timer starts
+    // these are the buttons that appear after the timer starts
     await findByText(/stop/i);
     await findByText(/edit/i);
+  });
+  test("stop button stops the timer", async () => {
+    const { getByText, findByText } = render(<Tabata />);
+
+    const setButton = getByText(/set/i);
+    fireEvent.click(setButton);
+
+    const startButton = await findByText(/start/i);
+    fireEvent.click(startButton);
+
+    const stopButton = await findByText(/stop/i);
+    fireEvent.click(stopButton);
+
+    // checking for the new buttons that appear after the timer stops
+    await findByText(/start/i);
+    await findByText(/edit/i);
+  });
+  test("edit button allows to edit the timer", async () => {
+    const { getByText, findByText } = render(<Tabata />);
+
+    const setButton = getByText(/set/i);
+    fireEvent.click(setButton);
+
+    const startButton = await findByText(/start/i);
+    fireEvent.click(startButton);
+
+    const editButton = await findByText(/edit/i);
+    fireEvent.click(editButton);
+
+    // checking for the new buttons that appear after the timer stops
+    await findByText(/set/i);
+  });
+  test("invalid value setting stays in the same screen", async () => {
+    const { getByText, findByText } = render(<Tabata />);
+
+    // get the input
+    const input = getByText(/minutes/i).nextElementSibling as HTMLInputElement;
+
+    // set the input value to an invalid value
+    fireEvent.change(input, { target: { value: "0" } });
+
+    // set the value
+    const setButton = getByText(/set/i);
+    fireEvent.click(setButton);
+
+    // check that it stays on the same page
+    await findByText(/minutes/i);
+    await findByText(/set/i);
   });
 });
