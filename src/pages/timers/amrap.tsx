@@ -21,6 +21,9 @@ function Amrap() {
   const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
+  const [reps, setReps] = useState(0);
+
+  // TODO: add a rep counter to this
 
   function startWorkout() {
     console.log("workout started");
@@ -42,6 +45,10 @@ function Amrap() {
       setSeconds(minutesToSeconds(intMins));
       SuccessToast("Values set!");
     } else ErrorToast("Please enter a valid number");
+  }
+
+  function addRep() {
+    setReps(reps + 1);
   }
 
   return (
@@ -100,6 +107,18 @@ function Amrap() {
           stopWorkout={stopWorkout}
           startWorkout={startWorkout}
         />
+      )}
+      {workoutStarted && (
+        // div for reps
+        <div className="flex flex-col items-center">
+          <button
+            className="text-slate-300 hover:text-white font-bold text-center p-4 m-4 bg-gray-800 rounded-lg self-center"
+            onClick={addRep}
+          >
+            add rep
+          </button>
+          <p className="font-bold">current reps: {reps}</p>
+        </div>
       )}
     </div>
   );
