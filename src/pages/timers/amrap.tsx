@@ -23,8 +23,6 @@ function Amrap() {
   const [valueError, setValueError] = useState(false);
   const [reps, setReps] = useState(0);
 
-  // TODO: add a rep counter to this
-
   function startWorkout() {
     console.log("workout started");
     setWorkoutStarted(true);
