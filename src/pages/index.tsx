@@ -4,7 +4,8 @@ import fs from "fs";
 // file system module to read the files in the directory
 import path from "path";
 // path module to get the file path
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 
 type TimerLink = {
   href: string;
@@ -18,7 +19,7 @@ type TimerLinks = {
 export default function Home({ timerLinks }: TimerLinks) {
   return (
     <div className="flex-grow flex justify-center items-center flex-col w-full bg-slate-900 text-gray-100">
-      <Helmet prioritizeSeoTags>
+      <Head>
         <title>Workout Timers</title>
         <meta
           name="description"
@@ -33,7 +34,7 @@ export default function Home({ timerLinks }: TimerLinks) {
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/"
         />
-      </Helmet>
+      </Head>
       {timerLinks.map(({ href, name }: TimerLink) => (
         <Link
           key={name}
