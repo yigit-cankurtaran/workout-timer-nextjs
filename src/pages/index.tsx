@@ -24,6 +24,15 @@ export default function Home({ timerLinks }: TimerLinks) {
           name="description"
           content="Workout timers for different types of workouts"
         />
+        <meta property="og:title" content="Workout Timers" />
+        <meta
+          property="og:description"
+          content="Some minimal workout timers such as HIIT, Tabata, EMOM, AMRAP, designed with Next.js"
+        />
+        <meta
+          property="og:url"
+          content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/"
+        />
       </Helmet>
       {timerLinks.map(({ href, name }: TimerLink) => (
         <Link
