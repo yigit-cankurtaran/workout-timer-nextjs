@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 import minutesToSeconds from "@/helpers/minutesToSeconds";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/stuff/WorkoutDisplay";
@@ -46,10 +46,16 @@ function Fortime() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
-      <Helmet prioritizeSeoTags>
+      <Head>
         <title>For Time Timer</title>
         <meta name="description" content="For Time timer for workouts" />
-      </Helmet>
+        <meta property="og:title" content="For Time Timer" />
+        <meta property="og:description" content="For Time timer for workouts" />
+        <meta
+          property="og:url"
+          content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/for-time"
+        />
+      </Head>
       {/* for toast messages */}
       <Toaster />
       {!valuesSet && (

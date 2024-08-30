@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 import WorkTimer from "@/stuff/WorkTimer";
 import RestTimer from "@/stuff/RestTimer";
 import valueSetting from "@/helpers/valueSetting";
@@ -70,13 +70,22 @@ function Emom() {
 
   return (
     <div className="flex bg-slate-900 text-gray-100 flex-col flex-grow h-screen justify-center items-center">
-      <Helmet prioritizeSeoTags>
+      <Head>
         <title>EMOM Timer</title>
         <meta
           name="description"
           content="Every minute on the minute (EMOM) timer for workouts"
         />
-      </Helmet>
+        <meta property="og:title" content="EMOM Timer" />
+        <meta
+          property="og:description"
+          content="Every minute on the minute (EMOM) timer for workouts"
+        />
+        <meta
+          property="og:url"
+          content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/emom"
+        />
+      </Head>
       <Toaster />
       {/* inputs */}
       {!valuesSet && (

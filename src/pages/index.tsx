@@ -4,7 +4,6 @@ import fs from "fs";
 // file system module to read the files in the directory
 import path from "path";
 // path module to get the file path
-// import { Helmet } from "react-helmet-async";
 import Head from "next/head";
 
 type TimerLink = {

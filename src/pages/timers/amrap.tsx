@@ -9,6 +9,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import { SuccessToast, ErrorToast } from "@/stuff/CustomToast";
 import SetButton from "@/stuff/SetButton";
+import Head from "next/head";
 
 function Amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -51,13 +52,22 @@ function Amrap() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
-      <Helmet prioritizeSeoTags>
+      <Head>
         <title>AMRAP Timer</title>
         <meta
           name="description"
           content="As many rounds as possible (AMRAP) timer for workouts"
         />
-      </Helmet>
+        <meta property="og:title" content="AMRAP Timer" />
+        <meta
+          property="og:description"
+          content="As many rounds as possible (AMRAP) timer for workouts"
+        />
+        <meta
+          property="og:url"
+          content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/amrap"
+        />
+      </Head>
       <Toaster />
       {/* if values aren't set bring up the setting part */}
       {!valuesSet && (

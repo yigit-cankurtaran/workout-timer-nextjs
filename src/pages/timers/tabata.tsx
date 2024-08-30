@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import Head from "next/head";
 // need to use useEffect for the rounds value
 import valueSetting from "@/helpers/valueSetting";
 import WorkTimer from "@/stuff/WorkTimer";
@@ -63,13 +63,22 @@ function Tabata() {
 
   return (
     <div className="flex flex-col justify-center bg-slate-900 min-h-screen text-gray-100">
-      <Helmet prioritizeSeoTags>
+      <Head>
         <title>Tabata Timer</title>
         <meta
           name="description"
           content="Tabata timer for high intensity interval training (HIIT)"
         />
-      </Helmet>
+        <meta property="og:title" content="Tabata Timer" />
+        <meta
+          property="og:description"
+          content="Tabata timer for high intensity interval training (HIIT)"
+        />
+        <meta
+          property="og:url"
+          content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/tabata"
+        />
+      </Head>
       <Toaster />
       {!valuesSet && (
         <div className="flex flex-col">
