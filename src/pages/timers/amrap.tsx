@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { SuccessToast, ErrorToast } from "@/stuff/CustomToast";
 import SetButton from "@/stuff/SetButton";
 import Head from "next/head";
+import RepCounter from "@/stuff/RepCounter";
 
 function Amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -116,16 +117,7 @@ function Amrap() {
         />
       )}
       {workoutStarted && (
-        // div for reps
-        <div className="flex flex-col items-center">
-          <button
-            className="text-slate-300 hover:text-white font-bold text-center p-4 m-4 bg-gray-800 rounded-lg self-center"
-            onClick={addRep}
-          >
-            add rep
-          </button>
-          <p className="font-bold">current reps: {reps}</p>
-        </div>
+        <RepCounter reps={reps} addRep={addRep} />
       )}
     </div>
   );

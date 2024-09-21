@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 import WorkoutDisplay from "@/stuff/WorkoutDisplay";
+import WorkoutComplete from "@/stuff/WorkoutComplete";
 
 function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -114,7 +115,9 @@ function Tabata() {
           />
         )}
       </div>
-      
+
+      <WorkoutComplete workoutCompleted={workoutCompleted} />
+
       {valuesSet && (
         <ControlButtons
           workoutStarted={workoutStarted}
