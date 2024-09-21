@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Head from "next/head";
-// need to use useEffect for the rounds value
 import valueSetting from "@/helpers/valueSetting";
 import WorkTimer from "@/stuff/WorkTimer";
 import RestTimer from "@/stuff/RestTimer";
@@ -13,53 +12,42 @@ import WorkoutDisplay from "@/stuff/WorkoutDisplay";
 function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
   const [minutesInput, setMinutesInput] = useState("4");
-  const intMins = parseInt(minutesInput);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
   const [rounds, setRounds] = useState(8);
-  const [seconds, setSeconds] = useState(20);
-  const [restSeconds, setRestSeconds] = useState(10);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
-  const [valueError, setValueError] = useState(false);
+
+  const intMins = useMemo(() => parseInt(minutesInput), [minutesInput]);
+  const seconds = useMemo(() => 20, []); // Tabata work interval is always 20 seconds
+  const restSeconds = useMemo(() => 10, []); // Tabata rest interval is always 10 seconds
 
   useEffect(() => {
-    const intMins = parseInt(minutesInput);
     if (intMins > 0) {
       setRounds(intMins * 2);
-      // this keeps the value we left off at
     }
-  }, [minutesInput]);
-  // 2 rounds per minute
-  // 20 seconds work, 10 seconds rest
+  }, [intMins]);
 
-  function startWorkout() {
-    console.log("workout started");
+  const startWorkout = useCallback(() => {
     setWorkoutStarted(true);
     setWorkoutCompleted(false);
     setWorkRunning(true);
-  }
+  }, []);
 
-  function stopWorkout() {
-    console.log("workout stopped");
+  const stopWorkout = useCallback(() => {
     setWorkoutStarted(false);
-    if (workRunning) setWorkRunning(false);
-    if (restRunning) setRestRunning(false);
-
-    // this is to reset the rounds to the original value
+    setWorkRunning(false);
+    setRestRunning(false);
     setMinutesInput("4");
-    setRounds(8);
-    // just in case
-    setSeconds(20);
-    setRestSeconds(10);
-  }
+    setRounds(intMins * 2);
+  }, [intMins]);
 
-  function handleValueSetting() {
-    if (valueSetting(setValueError, intMins)) {
+  const handleValueSetting = useCallback(() => {
+    if (valueSetting(() => {}, intMins)) {
       setValuesSet(true);
       SuccessToast("Values set!");
     } else ErrorToast("Please enter a valid number");
-  }
+  }, [intMins]);
 
   return (
     <div className="flex flex-col justify-center bg-slate-900 min-h-screen text-gray-100">
@@ -107,7 +95,6 @@ function Tabata() {
           workRunning={workRunning}
           rounds={rounds}
         />
-        {/* if work is running and rounds are above 0, display worktTimer  */}
         {workRunning && rounds > 0 && (
           <WorkTimer
             seconds={seconds}
@@ -119,7 +106,6 @@ function Tabata() {
             setRounds={setRounds}
           />
         )}
-        {/* if rest is running run RestTimer */}
         {restRunning && (
           <RestTimer
             restSeconds={restSeconds}
@@ -128,7 +114,7 @@ function Tabata() {
           />
         )}
       </div>
-
+      
       {valuesSet && (
         <ControlButtons
           workoutStarted={workoutStarted}
@@ -141,4 +127,4 @@ function Tabata() {
   );
 }
 
-export default Tabata;
+export default React.memo(Tabata);
