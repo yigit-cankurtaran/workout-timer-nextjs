@@ -94,6 +94,7 @@ function Emom() {
             <p className="p-2 text-xl font-extrabold">minutes</p>
             <input
               type="number"
+              id="minutes"
               value={minutesInput}
               onChange={(e) => setMinutesInput(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
@@ -101,6 +102,7 @@ function Emom() {
             <p className="p-2 text-xl font-extrabold">work seconds</p>
             <input
               type="number"
+              id="work"
               value={strWork}
               onChange={(e) => setStrWork(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
@@ -108,6 +110,7 @@ function Emom() {
             <p className="p-2 text-xl font-extrabold">rest seconds</p>
             <input
               type="number"
+              id="rest"
               value={strRest}
               onChange={(e) => setStrRest(e.target.value)}
               className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"

@@ -76,6 +76,7 @@ function Amrap() {
             <p className="p-2 text-xl font-extrabold">minutes</p>
             <input
               type="number"
+              id="minutes"
               value={minutesInput}
               onChange={(e) => setMinutesInput(e.target.value)}
               // makes the input send with an enter
@@ -103,7 +104,7 @@ function Amrap() {
             stopWorkout={stopWorkout}
             setWorkRunning={setWorkRunning}
             setRestRunning={setRestRunning}
-            setRounds={() => {}}
+            setRounds={() => { }}
           />
         )}
       </div>

@@ -79,26 +79,31 @@ function Hiit() {
         <div className="flex flex-col">
           <div className="flex p-4 flex-col items-center">
             <p className="p-2 text-xl font-extrabold">work</p>
-            <input
-              type="number"
-              value={strSeconds}
-              onChange={(e) => setStrSeconds(e.target.value)}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
-            <p className="p-2 text-xl font-extrabold">rest</p>
-            <input
-              type="number"
-              value={restSeconds}
-              onChange={(e) => setStrRest(e.target.value)}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
-            <p className="p-2 text-xl font-extrabold">rounds</p>
-            <input
-              type="number"
-              value={strRounds}
-              onChange={(e) => setStrRounds(e.target.value)}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
+            <form id="hiit-form" className="flex flex-col items-center">
+              <input
+                type="number"
+                id="work"
+                value={strSeconds}
+                onChange={(e) => setStrSeconds(e.target.value)}
+                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+              />
+              <p className="p-2 text-xl font-extrabold">rest</p>
+              <input
+                type="number"
+                id="rest"
+                value={restSeconds}
+                onChange={(e) => setStrRest(e.target.value)}
+                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+              />
+              <p className="p-2 text-xl font-extrabold">rounds</p>
+              <input
+                type="number"
+                id="rounds"
+                value={strRounds}
+                onChange={(e) => setStrRounds(e.target.value)}
+                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+              />
+            </form>
           </div>
 
           <SetButton handleValueSetting={handleValueSetting} />
