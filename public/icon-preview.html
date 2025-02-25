@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Timer Icon Preview</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/workout-icon.svg"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/workout-icon-dark.svg"
+      media="(prefers-color-scheme: dark)"
+    />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      .icon-container {
+        display: flex;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .icon-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .icon-preview img {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1rem;
+      }
+
+      .browser-tab {
+        display: flex;
+        align-items: center;
+        background: #f0f0f0;
+        border-radius: 8px 8px 0 0;
+        padding: 8px 16px;
+        width: 200px;
+        margin-top: 2rem;
+      }
+
+      .browser-tab img {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+
+      .dark-mode {
+        background: #333;
+        color: white;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #1d1d1f;
+          color: #f5f5f7;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Workout Timer Icon Preview</h1>
+    <p>
+      This page demonstrates how the new workout timer icon will appear in
+      browser tabs and bookmarks.
+    </p>
+
+    <div class="icon-container">
+      <div class="icon-preview">
+        <img src="/workout-icon.svg" alt="Workout Timer Icon (Light Mode)" />
+        <p>Light Mode Icon</p>
+      </div>
+
+      <div class="icon-preview">
+        <img
+          src="/workout-icon-dark.svg"
+          alt="Workout Timer Icon (Dark Mode)"
+        />
+        <p>Dark Mode Icon</p>
+      </div>
+    </div>
+
+    <h2>Browser Tab Preview</h2>
+
+    <div class="browser-tab">
+      <img src="/workout-icon.svg" alt="Tab Icon" />
+      <span>Workout Timer</span>
+    </div>
+
+    <div class="browser-tab dark-mode">
+      <img src="/workout-icon-dark.svg" alt="Tab Icon" />
+      <span>Workout Timer</span>
+    </div>
+
+    <h2>Implementation</h2>
+    <p>The icon has been implemented with the following features:</p>
+    <ul>
+      <li>SVG format for crisp display at any size</li>
+      <li>Separate light and dark mode versions</li>
+      <li>Automatic switching based on user's color scheme preference</li>
+      <li>Fallback to traditional favicon.ico for older browsers</li>
+    </ul>
+  </body>
+</html>

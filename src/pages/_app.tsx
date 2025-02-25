@@ -37,6 +37,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="msapplication-tap-highlight" content="no" />
 
+        {/* Favicon */}
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/workout-icon.svg"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/workout-icon-dark.svg"
+          media="(prefers-color-scheme: dark)"
+        />
+
         {/* Twitter Card data */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Workout Timer" />
