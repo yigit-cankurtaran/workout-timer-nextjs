@@ -18,20 +18,21 @@ export default function RestTimer({
   const [playRest] = useSound(restChime);
 
   return (
-    <div>
+    <div className="flex justify-center items-center my-6">
       <CountdownCircleTimer
         isPlaying
         duration={restSeconds}
-        colors={["#92C9E8", "#FFF4CC", "#F2A9A9"]}
-        colorsTime={[restSeconds, 0]}
+        colors={["#0071e3", "#5ac8fa", "#ff9500"]}
+        colorsTime={[restSeconds, restSeconds * 0.5, 0]}
         onComplete={() => {
           console.log("rest timer ended by itself");
           playRest();
           setRestRunning(false);
           setWorkRunning(true);
         }}
-        strokeWidth={20}
-        size={256}
+        strokeWidth={12}
+        size={240}
+        trailColor="#e5e5ea"
       >
         {RenderTime}
       </CountdownCircleTimer>

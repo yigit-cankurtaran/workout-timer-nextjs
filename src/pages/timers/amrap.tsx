@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import minutesToSeconds from "@/helpers/minutesToSeconds";
+import Head from "next/head";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/stuff/WorkoutDisplay";
-import WorkTimer from "@/stuff/WorkTimer";
 import WorkoutComplete from "@/stuff/WorkoutComplete";
+import SingleTimer from "@/stuff/SingleTimer";
 import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
-import { SuccessToast, ErrorToast } from "@/stuff/CustomToast";
 import SetButton from "@/stuff/SetButton";
-import Head from "next/head";
-import RepCounter from "@/stuff/RepCounter";
+import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 
 function Amrap() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [minutesInput, setMinutesInput] = useState("10");
-  const intMins = parseInt(minutesInput);
-  // using this to make it easier to set the values
-  const [seconds, setSeconds] = useState(minutesToSeconds(intMins));
+  const [strSeconds, setStrSeconds] = useState("300");
+  const seconds = parseInt(strSeconds);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
-  const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
-  const [reps, setReps] = useState(0);
 
   function startWorkout() {
     console.log("workout started");
@@ -35,33 +29,27 @@ function Amrap() {
     console.log("workout stopped");
     setWorkoutStarted(false);
     if (workRunning) setWorkRunning(false);
-    if (restRunning) setRestRunning(false);
   }
 
   function handleValueSetting() {
-    if (valueSetting(setValueError, intMins)) {
+    if (valueSetting(setValueError, seconds, 0, 1)) {
       setValuesSet(true);
-      setSeconds(minutesToSeconds(intMins));
       SuccessToast("Values set!");
-    } else ErrorToast("Please enter a valid number");
-  }
-
-  function addRep() {
-    setReps(reps + 1);
+    } else ErrorToast("All values must be valid");
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+    <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
       <Head>
         <title>AMRAP Timer</title>
         <meta
           name="description"
-          content="As many rounds as possible (AMRAP) timer for workouts"
+          content="As Many Rounds As Possible (AMRAP) timer for workouts"
         />
         <meta property="og:title" content="AMRAP Timer" />
         <meta
           property="og:description"
-          content="As many rounds as possible (AMRAP) timer for workouts"
+          content="As Many Rounds As Possible (AMRAP) timer for workouts"
         />
         <meta
           property="og:url"
@@ -69,56 +57,50 @@ function Amrap() {
         />
       </Head>
       <Toaster />
-      {/* if values aren't set bring up the setting part */}
-      {!valuesSet && (
-        <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center">
-            <p className="p-2 text-xl font-extrabold">minutes</p>
-            <input
-              type="number"
-              id="minutes"
-              value={minutesInput}
-              onChange={(e) => setMinutesInput(e.target.value)}
-              // makes the input send with an enter
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleValueSetting();
-                }
-              }}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
+
+      {!valuesSet ? (
+        <div className="apple-card p-8 w-full mt-8">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            AMRAP Timer Setup
+          </h1>
+          <div className="space-y-6">
+            <div className="apple-input-group">
+              <label htmlFor="seconds" className="apple-label">
+                Total Duration (seconds)
+              </label>
+              <input
+                type="number"
+                id="seconds"
+                value={strSeconds}
+                onChange={(e) => setStrSeconds(e.target.value)}
+                className="text-center font-medium"
+              />
+            </div>
+
+            <SetButton handleValueSetting={handleValueSetting} />
           </div>
-
-          <SetButton handleValueSetting={handleValueSetting} />
         </div>
-      )}
+      ) : (
+        <div className="w-full mt-8">
+          <WorkoutDisplay workoutStarted={workoutStarted} />
 
-      <div className="flex flex-col items-center justify-center">
-        <WorkoutDisplay workoutStarted={workoutStarted} />
-        {workRunning && (
-          <WorkTimer
-            seconds={seconds}
-            rounds={1}
-            // practically functions as a 1 round timer
-            setWorkoutCompleted={setWorkoutCompleted}
+          {workRunning && (
+            <SingleTimer
+              seconds={seconds}
+              setWorkoutCompleted={setWorkoutCompleted}
+              stopWorkout={stopWorkout}
+            />
+          )}
+
+          <WorkoutComplete workoutCompleted={workoutCompleted} />
+
+          <ControlButtons
+            workoutStarted={workoutStarted}
+            setValuesSet={setValuesSet}
             stopWorkout={stopWorkout}
-            setWorkRunning={setWorkRunning}
-            setRestRunning={setRestRunning}
-            setRounds={() => { }}
+            startWorkout={startWorkout}
           />
-        )}
-      </div>
-      <WorkoutComplete workoutCompleted={workoutCompleted} />
-      {valuesSet && (
-        <ControlButtons
-          workoutStarted={workoutStarted}
-          setValuesSet={setValuesSet}
-          stopWorkout={stopWorkout}
-          startWorkout={startWorkout}
-        />
-      )}
-      {workoutStarted && (
-        <RepCounter reps={reps} addRep={addRep} />
+        </div>
       )}
     </div>
   );

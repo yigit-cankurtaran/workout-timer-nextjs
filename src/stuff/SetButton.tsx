@@ -8,9 +8,9 @@ function SetButton({ handleValueSetting }: SetButtonProps) {
   return (
     <button
       onClick={() => handleValueSetting()}
-      className="text-slate-300 hover:text-white text-lg font-bold text-center p-4 m-4 bg-gray-800 rounded-lg w-48 self-center"
+      className="apple-button flex items-center justify-center min-w-[120px] py-3 px-6 mt-6 self-center"
     >
-      set
+      <span className="font-medium">Set</span>
     </button>
   );
 }

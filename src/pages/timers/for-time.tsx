@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import minutesToSeconds from "@/helpers/minutesToSeconds";
 import valueSetting from "@/helpers/valueSetting";
 import WorkoutDisplay from "@/stuff/WorkoutDisplay";
-import WorkTimer from "@/stuff/WorkTimer";
 import WorkoutComplete from "@/stuff/WorkoutComplete";
+import SingleTimer from "@/stuff/SingleTimer";
 import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
 
-// p much just amrap just with a different name
-function Fortime() {
+function ForTime() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [minutesInput, setMinutesInput] = useState("10");
-  const intMins = parseInt(minutesInput);
-  const [seconds, setSeconds] = useState(minutesToSeconds(intMins));
+  const [strSeconds, setStrSeconds] = useState("300");
+  const seconds = parseInt(strSeconds);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
-  const [restRunning, setRestRunning] = useState(false);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
   const [valueError, setValueError] = useState(false);
 
@@ -33,84 +29,81 @@ function Fortime() {
     console.log("workout stopped");
     setWorkoutStarted(false);
     if (workRunning) setWorkRunning(false);
-    if (restRunning) setRestRunning(false);
   }
 
   function handleValueSetting() {
-    if (valueSetting(setValueError, intMins)) {
+    if (valueSetting(setValueError, seconds, 0, 1)) {
       setValuesSet(true);
-      setSeconds(minutesToSeconds(intMins));
       SuccessToast("Values set!");
-    } else ErrorToast("Please enter a valid number");
+    } else ErrorToast("All values must be valid");
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+    <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
       <Head>
         <title>For Time Timer</title>
-        <meta name="description" content="For Time timer for workouts" />
+        <meta
+          name="description"
+          content="For Time timer for workouts - complete as fast as possible"
+        />
         <meta property="og:title" content="For Time Timer" />
-        <meta property="og:description" content="For Time timer for workouts" />
+        <meta
+          property="og:description"
+          content="For Time timer for workouts - complete as fast as possible"
+        />
         <meta
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/for-time"
         />
       </Head>
-      {/* for toast messages */}
       <Toaster />
-      {!valuesSet && (
-        <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center ">
-            <p className="p-2 text-xl font-extrabold">minutes:</p>
-            <input
-              type="number"
-              id="minutes"
-              value={minutesInput}
-              onChange={(e) => setMinutesInput(e.target.value)}
-              // makes the input send with an enter
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleValueSetting();
-                }
-              }}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
+
+      {!valuesSet ? (
+        <div className="apple-card p-8 w-full mt-8">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            For Time Timer Setup
+          </h1>
+          <div className="space-y-6">
+            <div className="apple-input-group">
+              <label htmlFor="seconds" className="apple-label">
+                Time Cap (seconds)
+              </label>
+              <input
+                type="number"
+                id="seconds"
+                value={strSeconds}
+                onChange={(e) => setStrSeconds(e.target.value)}
+                className="text-center font-medium"
+              />
+            </div>
+
+            <SetButton handleValueSetting={handleValueSetting} />
           </div>
-
-          {/* button for setting the values */}
-          <SetButton handleValueSetting={handleValueSetting} />
         </div>
-      )}
+      ) : (
+        <div className="w-full mt-8">
+          <WorkoutDisplay workoutStarted={workoutStarted} />
 
-      <div className="flex flex-col items-center justify-center">
-        {/* display for the work-rest cycles and rounds (if any) */}
-        <WorkoutDisplay workoutStarted={workoutStarted} />
-        {workRunning && (
-          <WorkTimer
-            seconds={seconds}
-            rounds={1}
-            // practically functions as a 1 round timer
-            setWorkoutCompleted={setWorkoutCompleted}
+          {workRunning && (
+            <SingleTimer
+              seconds={seconds}
+              setWorkoutCompleted={setWorkoutCompleted}
+              stopWorkout={stopWorkout}
+            />
+          )}
+
+          <WorkoutComplete workoutCompleted={workoutCompleted} />
+
+          <ControlButtons
+            workoutStarted={workoutStarted}
+            setValuesSet={setValuesSet}
             stopWorkout={stopWorkout}
-            setWorkRunning={setWorkRunning}
-            setRestRunning={setRestRunning}
-            setRounds={() => { }}
+            startWorkout={startWorkout}
           />
-        )}
-      </div>
-      {/* workout complete display */}
-      <WorkoutComplete workoutCompleted={workoutCompleted} />
-      {/* if values are set, display start-stop buttons */}
-      {valuesSet && (
-        <ControlButtons
-          workoutStarted={workoutStarted}
-          setValuesSet={setValuesSet}
-          stopWorkout={stopWorkout}
-          startWorkout={startWorkout}
-        />
+        </div>
       )}
     </div>
   );
 }
 
-export default Fortime;
+export default ForTime;

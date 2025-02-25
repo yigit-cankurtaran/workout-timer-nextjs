@@ -1,67 +1,71 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import valueSetting from "@/helpers/valueSetting";
+import WorkoutDisplay from "@/stuff/WorkoutDisplay";
+import WorkoutComplete from "@/stuff/WorkoutComplete";
 import WorkTimer from "@/stuff/WorkTimer";
 import RestTimer from "@/stuff/RestTimer";
 import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
-import WorkoutDisplay from "@/stuff/WorkoutDisplay";
-import WorkoutComplete from "@/stuff/WorkoutComplete";
 
 function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
-  const [minutesInput, setMinutesInput] = useState("4");
+  const [strSeconds, setStrSeconds] = useState("20");
+  const seconds = parseInt(strSeconds);
+  const [strRest, setStrRest] = useState("10");
+  const restSeconds = parseInt(strRest);
+  const [strRounds, setStrRounds] = useState("8");
+  const intRounds = parseInt(strRounds);
+  const [rounds, setRounds] = useState(intRounds);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [workRunning, setWorkRunning] = useState(false);
   const [restRunning, setRestRunning] = useState(false);
-  const [rounds, setRounds] = useState(8);
   const [workoutCompleted, setWorkoutCompleted] = useState(false);
+  const [valueError, setValueError] = useState(false);
 
-  const intMins = useMemo(() => parseInt(minutesInput), [minutesInput]);
-  const seconds = useMemo(() => 20, []); // Tabata work interval is always 20 seconds
-  const restSeconds = useMemo(() => 10, []); // Tabata rest interval is always 10 seconds
-
+  // resetting rounds
   useEffect(() => {
-    if (intMins > 0) {
-      setRounds(intMins * 2);
+    const intRounds = parseInt(strRounds);
+    if (intRounds > 0) {
+      setRounds(intRounds);
     }
-  }, [intMins]);
+  }, [strRounds]);
 
-  const startWorkout = useCallback(() => {
+  function startWorkout() {
+    console.log("workout started");
     setWorkoutStarted(true);
-    setWorkoutCompleted(false);
     setWorkRunning(true);
-  }, []);
+    setWorkoutCompleted(false);
+  }
 
-  const stopWorkout = useCallback(() => {
+  function stopWorkout() {
+    console.log("workout stopped");
     setWorkoutStarted(false);
-    setWorkRunning(false);
-    setRestRunning(false);
-    setMinutesInput("4");
-    setRounds(intMins * 2);
-  }, [intMins]);
+    if (workRunning) setWorkRunning(false);
+    if (restRunning) setRestRunning(false);
+  }
 
-  const handleValueSetting = useCallback(() => {
-    if (valueSetting(() => {}, intMins)) {
+  function handleValueSetting() {
+    if (valueSetting(setValueError, seconds, restSeconds, intRounds)) {
       setValuesSet(true);
       SuccessToast("Values set!");
-    } else ErrorToast("Please enter a valid number");
-  }, [intMins]);
+    } else ErrorToast("All values must be valid");
+  }
 
   return (
-    <div className="flex flex-col justify-center bg-slate-900 min-h-screen text-gray-100">
+    <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
       <Head>
         <title>Tabata Timer</title>
         <meta
           name="description"
-          content="Tabata timer for high intensity interval training (HIIT)"
+          content="Tabata timer for workouts (20s work, 10s rest for 8 rounds)"
         />
         <meta property="og:title" content="Tabata Timer" />
         <meta
           property="og:description"
-          content="Tabata timer for high intensity interval training (HIIT)"
+          content="Tabata timer for workouts (20s work, 10s rest for 8 rounds)"
         />
         <meta
           property="og:url"
@@ -69,65 +73,95 @@ function Tabata() {
         />
       </Head>
       <Toaster />
-      {!valuesSet && (
-        <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center">
-            <p id="minutes" className="p-2 text-xl font-extrabold">
-              minutes
-            </p>
-            <input
-              type="number"
-              id="minutesInput"
-              value={minutesInput}
-              onChange={(e) => setMinutesInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleValueSetting();
-              }}
-              className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
-            />
+
+      {!valuesSet ? (
+        <div className="apple-card p-8 w-full mt-8">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            Tabata Timer Setup
+          </h1>
+          <div className="space-y-6">
+            <div className="apple-input-group">
+              <label htmlFor="work" className="apple-label">
+                Work Duration (seconds)
+              </label>
+              <input
+                type="number"
+                id="work"
+                value={strSeconds}
+                onChange={(e) => setStrSeconds(e.target.value)}
+                className="text-center font-medium"
+              />
+            </div>
+
+            <div className="apple-input-group">
+              <label htmlFor="rest" className="apple-label">
+                Rest Duration (seconds)
+              </label>
+              <input
+                type="number"
+                id="rest"
+                value={strRest}
+                onChange={(e) => setStrRest(e.target.value)}
+                className="text-center font-medium"
+              />
+            </div>
+
+            <div className="apple-input-group">
+              <label htmlFor="rounds" className="apple-label">
+                Number of Rounds
+              </label>
+              <input
+                type="number"
+                id="rounds"
+                value={strRounds}
+                onChange={(e) => setStrRounds(e.target.value)}
+                className="text-center font-medium"
+              />
+            </div>
+
+            <SetButton handleValueSetting={handleValueSetting} />
           </div>
-          <SetButton handleValueSetting={handleValueSetting} />
         </div>
-      )}
-
-      <div className="flex flex-col items-center justify-center">
-        <WorkoutDisplay
-          workoutStarted={workoutStarted}
-          workRunning={workRunning}
-          rounds={rounds}
-        />
-        {workRunning && rounds > 0 && (
-          <WorkTimer
-            seconds={seconds}
+      ) : (
+        <div className="w-full mt-8">
+          <WorkoutDisplay
+            workoutStarted={workoutStarted}
+            workRunning={workRunning}
             rounds={rounds}
-            setWorkoutCompleted={setWorkoutCompleted}
+          />
+
+          {workRunning && rounds > 0 && (
+            <WorkTimer
+              seconds={seconds}
+              rounds={rounds}
+              setWorkoutCompleted={setWorkoutCompleted}
+              stopWorkout={stopWorkout}
+              setWorkRunning={setWorkRunning}
+              setRestRunning={setRestRunning}
+              setRounds={setRounds}
+            />
+          )}
+
+          {restRunning && rounds > 0 && (
+            <RestTimer
+              restSeconds={restSeconds}
+              setRestRunning={setRestRunning}
+              setWorkRunning={setWorkRunning}
+            />
+          )}
+
+          <WorkoutComplete workoutCompleted={workoutCompleted} />
+
+          <ControlButtons
+            workoutStarted={workoutStarted}
+            setValuesSet={setValuesSet}
             stopWorkout={stopWorkout}
-            setWorkRunning={setWorkRunning}
-            setRestRunning={setRestRunning}
-            setRounds={setRounds}
+            startWorkout={startWorkout}
           />
-        )}
-        {restRunning && (
-          <RestTimer
-            restSeconds={restSeconds}
-            setRestRunning={setRestRunning}
-            setWorkRunning={setWorkRunning}
-          />
-        )}
-      </div>
-
-      <WorkoutComplete workoutCompleted={workoutCompleted} />
-
-      {valuesSet && (
-        <ControlButtons
-          workoutStarted={workoutStarted}
-          setValuesSet={setValuesSet}
-          stopWorkout={stopWorkout}
-          startWorkout={startWorkout}
-        />
+        </div>
       )}
     </div>
   );
 }
 
-export default React.memo(Tabata);
+export default Tabata;

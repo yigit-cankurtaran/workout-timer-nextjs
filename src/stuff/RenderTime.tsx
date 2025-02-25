@@ -7,11 +7,14 @@ export default function RenderTime({
   remainingTime: number;
 }) {
   if (remainingTime === 0) {
-    return <p>You&apos;re done!</p>;
+    return <p className="text-2xl font-semibold text-[#34c759]">Complete!</p>;
   }
   return (
-    <div>
-      <h1 className="font-bold text-3xl">{formatTime(remainingTime)}</h1>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold tracking-tight">
+        {formatTime(remainingTime)}
+      </h1>
+      <p className="text-sm text-[#86868b] mt-1">seconds</p>
     </div>
   );
 }

@@ -17,7 +17,7 @@ type TimerLinks = {
 
 export default function Home({ timerLinks }: TimerLinks) {
   return (
-    <div className="flex-grow flex justify-center items-center flex-col w-full bg-slate-900 text-gray-100">
+    <div className="flex flex-col items-center w-full">
       <Head>
         <title>Workout Timers</title>
         <meta
@@ -34,19 +34,69 @@ export default function Home({ timerLinks }: TimerLinks) {
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/"
         />
       </Head>
-      {timerLinks.map(({ href, name }: TimerLink) => (
-        <Link
-          key={name}
-          // name of the file
-          href={href}
-          // path to the file
-          className="text-center text-2xl text-blue-400 hover:text-blue-600 p-4 font-bold m-4"
-        >
-          {name}
-        </Link>
-      ))}
+
+      <div className="text-center mb-12 mt-8">
+        <h1 className="text-4xl font-bold text-[#1d1d1f] dark:text-white mb-3">
+          Workout Timers
+        </h1>
+        <p className="text-[#86868b] dark:text-[#86868b] max-w-md mx-auto">
+          Choose a timer type to start your workout session
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+        {timerLinks.map(({ href, name }: TimerLink) => (
+          <Link
+            key={name}
+            href={href}
+            className="apple-card p-6 flex flex-col items-center justify-center transition-all duration-300 hover:shadow-apple transform hover:-translate-y-1"
+          >
+            <div className="w-12 h-12 mb-4 rounded-full bg-[#0071e3] dark:bg-[#0077ed] flex items-center justify-center text-white">
+              {getTimerIcon(name)}
+            </div>
+            <h2 className="text-xl font-semibold capitalize">{name}</h2>
+            <p className="text-sm text-[#86868b] dark:text-[#86868b] mt-2 text-center">
+              {getTimerDescription(name)}
+            </p>
+          </Link>
+        ))}
+      </div>
     </div>
   );
+}
+
+function getTimerIcon(name: string) {
+  switch (name.toLowerCase()) {
+    case "hiit":
+      return "⏱️";
+    case "tabata":
+      return "🔄";
+    case "emom":
+      return "⏰";
+    case "amrap":
+      return "🔁";
+    case "for time":
+      return "⏳";
+    default:
+      return "⏱️";
+  }
+}
+
+function getTimerDescription(name: string) {
+  switch (name.toLowerCase()) {
+    case "hiit":
+      return "High-Intensity Interval Training";
+    case "tabata":
+      return "20s work, 10s rest for 8 rounds";
+    case "emom":
+      return "Every Minute On the Minute";
+    case "amrap":
+      return "As Many Rounds As Possible";
+    case "for time":
+      return "Complete workout as fast as possible";
+    default:
+      return "Workout timer";
+  }
 }
 
 export async function getStaticProps() {

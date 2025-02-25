@@ -57,7 +57,7 @@ function Hiit() {
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen bg-slate-900 text-gray-100">
+    <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
       <Head>
         <title>HIIT Timer</title>
         <meta
@@ -75,74 +75,92 @@ function Hiit() {
         />
       </Head>
       <Toaster />
-      {!valuesSet && (
-        <div className="flex flex-col">
-          <div className="flex p-4 flex-col items-center">
-            <p className="p-2 text-xl font-extrabold">work</p>
-            <form id="hiit-form" className="flex flex-col items-center">
+
+      {!valuesSet ? (
+        <div className="apple-card p-8 w-full mt-8">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            HIIT Timer Setup
+          </h1>
+          <div className="space-y-6">
+            <div className="apple-input-group">
+              <label htmlFor="work" className="apple-label">
+                Work Duration (seconds)
+              </label>
               <input
                 type="number"
                 id="work"
                 value={strSeconds}
                 onChange={(e) => setStrSeconds(e.target.value)}
-                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+                className="text-center font-medium"
               />
-              <p className="p-2 text-xl font-extrabold">rest</p>
+            </div>
+
+            <div className="apple-input-group">
+              <label htmlFor="rest" className="apple-label">
+                Rest Duration (seconds)
+              </label>
               <input
                 type="number"
                 id="rest"
-                value={restSeconds}
+                value={strRest}
                 onChange={(e) => setStrRest(e.target.value)}
-                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+                className="text-center font-medium"
               />
-              <p className="p-2 text-xl font-extrabold">rounds</p>
+            </div>
+
+            <div className="apple-input-group">
+              <label htmlFor="rounds" className="apple-label">
+                Number of Rounds
+              </label>
               <input
                 type="number"
                 id="rounds"
                 value={strRounds}
                 onChange={(e) => setStrRounds(e.target.value)}
-                className="text-center text-lg font-semibold bg-slate-900 text-gray-100 border-4 border-gray-300 p-4 rounded-lg w-64"
+                className="text-center font-medium"
               />
-            </form>
+            </div>
+
+            <SetButton handleValueSetting={handleValueSetting} />
           </div>
-
-          <SetButton handleValueSetting={handleValueSetting} />
         </div>
-      )}
-
-      <div className="flex flex-col items-center justify-center">
-        <WorkoutDisplay
-          workoutStarted={workoutStarted}
-          workRunning={workRunning}
-          rounds={rounds}
-        />
-        {workRunning && rounds > 0 && (
-          <WorkTimer
-            seconds={seconds}
+      ) : (
+        <div className="w-full mt-8">
+          <WorkoutDisplay
+            workoutStarted={workoutStarted}
+            workRunning={workRunning}
             rounds={rounds}
-            setWorkoutCompleted={setWorkoutCompleted}
+          />
+
+          {workRunning && rounds > 0 && (
+            <WorkTimer
+              seconds={seconds}
+              rounds={rounds}
+              setWorkoutCompleted={setWorkoutCompleted}
+              stopWorkout={stopWorkout}
+              setWorkRunning={setWorkRunning}
+              setRestRunning={setRestRunning}
+              setRounds={setRounds}
+            />
+          )}
+
+          {restRunning && rounds > 0 && (
+            <RestTimer
+              restSeconds={restSeconds}
+              setRestRunning={setRestRunning}
+              setWorkRunning={setWorkRunning}
+            />
+          )}
+
+          <WorkoutComplete workoutCompleted={workoutCompleted} />
+
+          <ControlButtons
+            workoutStarted={workoutStarted}
+            setValuesSet={setValuesSet}
             stopWorkout={stopWorkout}
-            setWorkRunning={setWorkRunning}
-            setRestRunning={setRestRunning}
-            setRounds={setRounds}
+            startWorkout={startWorkout}
           />
-        )}
-        {restRunning && rounds > 0 && (
-          <RestTimer
-            restSeconds={restSeconds}
-            setRestRunning={setRestRunning}
-            setWorkRunning={setWorkRunning}
-          />
-        )}
-        <WorkoutComplete workoutCompleted={workoutCompleted} />
-      </div>
-      {valuesSet && (
-        <ControlButtons
-          workoutStarted={workoutStarted}
-          setValuesSet={setValuesSet}
-          stopWorkout={stopWorkout}
-          startWorkout={startWorkout}
-        />
+        </div>
       )}
     </div>
   );
