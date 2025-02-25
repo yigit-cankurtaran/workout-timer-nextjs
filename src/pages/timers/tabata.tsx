@@ -9,6 +9,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import StructuredData from "@/stuff/StructuredData";
 
 function Tabata() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -60,18 +61,37 @@ function Tabata() {
         <title>Tabata Timer</title>
         <meta
           name="description"
-          content="Tabata timer for workouts (20s work, 10s rest for 8 rounds)"
+          content="Tabata workout timer with 20 seconds of work and 10 seconds of rest"
         />
         <meta property="og:title" content="Tabata Timer" />
         <meta
           property="og:description"
-          content="Tabata timer for workouts (20s work, 10s rest for 8 rounds)"
+          content="Tabata workout timer with 20 seconds of work and 10 seconds of rest"
         />
         <meta
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/tabata"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebPage"
+        name="Tabata Timer"
+        description="Tabata workout timer with customizable work and rest intervals"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/tabata"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
+
+      <StructuredData
+        type="SportsActivity"
+        name="Tabata Workout"
+        description="Tabata is a high-intensity interval training that consists of 8 rounds of 20-second exercises followed by 10 seconds of rest"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/tabata"
+        activityType="ExerciseAction"
+        sportsActivityLocation="Home"
+      />
+
       <Toaster />
 
       {!valuesSet ? (

@@ -9,6 +9,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import StructuredData from "@/stuff/StructuredData";
 
 function Hiit() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -73,7 +74,35 @@ function Hiit() {
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/hiit"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebPage"
+        name="HIIT Timer"
+        description="High Intensity Interval Training (HIIT) timer for workouts with customizable work and rest intervals"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/hiit"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
+
+      <StructuredData
+        type="HowTo"
+        name="How to Use the HIIT Timer"
+        description="Follow these steps to set up and use the HIIT workout timer"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/hiit"
+        steps={[
+          "Enter your desired work duration in seconds",
+          "Enter your desired rest duration in seconds",
+          "Enter the number of rounds you want to complete",
+          "Click the Set button to confirm your settings",
+          "Press Start to begin your workout",
+          "Complete the work intervals at high intensity",
+          "Rest during the rest intervals",
+          "Continue until all rounds are completed",
+        ]}
+        totalTime="PT30M"
+      />
+
       <Toaster />
 
       {!valuesSet ? (

@@ -8,6 +8,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import StructuredData from "@/stuff/StructuredData";
 
 function ForTime() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -55,7 +56,34 @@ function ForTime() {
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/for-time"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebPage"
+        name="For Time Timer"
+        description="For Time workout timer to track how quickly you can complete a workout"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/for-time"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
+
+      <StructuredData
+        type="HowTo"
+        name="How to Use the For Time Timer"
+        description="Follow these steps to set up and use the For Time workout timer"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/for-time"
+        steps={[
+          "Enter your time cap in seconds (default is 300 seconds)",
+          "Click the Set button to confirm your settings",
+          "Press Start to begin your workout",
+          "Complete your workout as quickly as possible",
+          "The timer will count up from zero",
+          "Press Stop when you've completed all the required work",
+          "Your final time will be displayed",
+        ]}
+        totalTime="PT10M"
+      />
+
       <Toaster />
 
       {!valuesSet ? (

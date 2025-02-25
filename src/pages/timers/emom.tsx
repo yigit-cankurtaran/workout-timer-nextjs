@@ -8,6 +8,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import StructuredData from "@/stuff/StructuredData";
 
 function Emom() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -55,18 +56,46 @@ function Emom() {
         <title>EMOM Timer</title>
         <meta
           name="description"
-          content="Every Minute On the Minute (EMOM) timer for workouts"
+          content="Every Minute On the Minute (EMOM) workout timer"
         />
         <meta property="og:title" content="EMOM Timer" />
         <meta
           property="og:description"
-          content="Every Minute On the Minute (EMOM) timer for workouts"
+          content="Every Minute On the Minute (EMOM) workout timer"
         />
         <meta
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/emom"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebPage"
+        name="EMOM Timer"
+        description="Every Minute On the Minute (EMOM) workout timer with customizable intervals"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/emom"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
+
+      <StructuredData
+        type="HowTo"
+        name="How to Use the EMOM Timer"
+        description="Follow these steps to set up and use the Every Minute On the Minute workout timer"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/emom"
+        steps={[
+          "Enter your desired interval duration in seconds (default is 60 seconds)",
+          "Enter the number of rounds you want to complete",
+          "Click the Set button to confirm your settings",
+          "Press Start to begin your workout",
+          "Complete your exercise within each minute interval",
+          "Rest for the remaining time until the next minute begins",
+          "A new round will automatically start each minute",
+          "Continue until all rounds are completed",
+        ]}
+        totalTime="PT20M"
+      />
+
       <Toaster />
 
       {!valuesSet ? (

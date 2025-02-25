@@ -8,6 +8,7 @@ import ControlButtons from "@/stuff/ControlButtons";
 import { Toaster } from "react-hot-toast";
 import SetButton from "@/stuff/SetButton";
 import { ErrorToast, SuccessToast } from "@/stuff/CustomToast";
+import StructuredData from "@/stuff/StructuredData";
 
 function Amrap() {
   const [valuesSet, setValuesSet] = useState(false);
@@ -55,7 +56,26 @@ function Amrap() {
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/amrap"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebPage"
+        name="AMRAP Timer"
+        description="As Many Rounds As Possible (AMRAP) workout timer with customizable time limit"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/amrap"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
+
+      <StructuredData
+        type="SportsActivity"
+        name="AMRAP Workout"
+        description="AMRAP (As Many Rounds As Possible) is a workout format where you complete as many rounds of a circuit as possible within a set time limit"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/timers/amrap"
+        activityType="ExerciseAction"
+        sportsActivityLocation="Home"
+      />
+
       <Toaster />
 
       {!valuesSet ? (

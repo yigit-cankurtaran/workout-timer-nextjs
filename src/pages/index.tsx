@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 // path module to get the file path
 import Head from "next/head";
+import StructuredData from "@/stuff/StructuredData";
 
 type TimerLink = {
   href: string;
@@ -33,7 +34,17 @@ export default function Home({ timerLinks }: TimerLinks) {
           property="og:url"
           content="https://yigit-cankurtaran.github.io/workout-timer-nextjs/"
         />
+        <meta property="og:type" content="website" />
       </Head>
+
+      <StructuredData
+        type="WebApplication"
+        name="Workout Timers"
+        description="Collection of workout timers including HIIT, EMOM, AMRAP, and For Time timers"
+        url="https://yigit-cankurtaran.github.io/workout-timer-nextjs/"
+        datePublished="2023-07-01"
+        dateModified={new Date().toISOString().split("T")[0]}
+      />
 
       <div className="text-center mb-12 mt-8">
         <h1 className="text-4xl font-bold text-[#1d1d1f] dark:text-white mb-3">
