@@ -14,7 +14,9 @@ export default function RestTimer({
   setRestRunning,
   setWorkRunning,
 }: RestTimerProps) {
-  const restChime = "../assets/sounds/restchime.mp3";
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/workout-timer-nextjs" : "";
+  const restChime = `${basePath}/assets/sounds/restchime.mp3`;
   const [playRest] = useSound(restChime);
 
   return (

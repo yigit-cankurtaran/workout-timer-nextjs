@@ -9,6 +9,8 @@ import Head from "next/head";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const canonicalUrl = `https://yigit-cankurtaran.github.io/workout-timer-nextjs${router.pathname}`;
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/workout-timer-nextjs" : "";
 
   return (
     <>
@@ -27,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
           content="#000000"
           media="(prefers-color-scheme: dark)"
         />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href={`${basePath}/manifest.json`} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="application-name" content="Workout Timer" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -41,15 +43,16 @@ export default function App({ Component, pageProps }: AppProps) {
         <link
           rel="icon"
           type="image/svg+xml"
-          href="/workout-icon.svg"
+          href={`${basePath}/workout-icon.svg`}
           media="(prefers-color-scheme: light)"
         />
         <link
           rel="icon"
           type="image/svg+xml"
-          href="/workout-icon-dark.svg"
+          href={`${basePath}/workout-icon-dark.svg`}
           media="(prefers-color-scheme: dark)"
         />
+        <link rel="alternate icon" href={`${basePath}/favicon.ico`} />
 
         {/* Twitter Card data */}
         <meta name="twitter:card" content="summary" />

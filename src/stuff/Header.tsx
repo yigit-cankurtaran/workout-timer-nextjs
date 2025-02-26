@@ -3,6 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 function Header() {
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/workout-timer-nextjs" : "";
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-[#f5f5f7]/80 dark:bg-black/80 border-b border-[#d2d2d7]/20 dark:border-[#38383a]/30">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 py-4 flex items-center justify-between">
@@ -29,14 +32,14 @@ function Header() {
           <picture className="hidden sm:block">
             <source
               media="(prefers-color-scheme: dark)"
-              srcSet="/workout-icon-dark.svg"
+              srcSet={`${basePath}/workout-icon-dark.svg`}
             />
             <source
               media="(prefers-color-scheme: light)"
-              srcSet="/workout-icon.svg"
+              srcSet={`${basePath}/workout-icon.svg`}
             />
             <img
-              src="/workout-icon.svg"
+              src={`${basePath}/workout-icon.svg`}
               alt="Workout Timer"
               width="32"
               height="32"

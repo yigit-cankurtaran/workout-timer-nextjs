@@ -18,7 +18,9 @@ export default function EmomTimer({
   stopWorkout,
   setRounds,
 }: EmomTimerProps) {
-  const dingSound = "../assets/sounds/workding.mp3";
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/workout-timer-nextjs" : "";
+  const dingSound = `${basePath}/assets/sounds/workding.mp3`;
   const [playDing] = useSound(dingSound);
 
   // Use a key to force the timer to re-render when a round completes

@@ -22,7 +22,9 @@ export default function WorkTimer({
   setRestRunning,
   setRounds,
 }: WorkTimerProps) {
-  const dingSound = "../assets/sounds/workding.mp3";
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/workout-timer-nextjs" : "";
+  const dingSound = `${basePath}/assets/sounds/workding.mp3`;
   // brackets because we're destructuring the return value of useSound
   const [playDing] = useSound(dingSound);
 
